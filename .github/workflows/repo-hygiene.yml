@@ -1,0 +1,39 @@
+name: Repo hygiene
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-ignored-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail if generated/ignored folders got committed
+        shell: bash
+        run: |
+          patterns='^(Library|Temp|Obj|Build|Builds|Logs|UserSettings)/'
+          matches=$(git ls-files | grep -E -i "$patterns" || true)
+          if [ -n "$matches" ]; then
+            echo "The following files should be gitignored but are tracked:"
+            echo "$matches"
+            exit 1
+          fi
+
+      - name: Fail if large files were committed without LFS
+        shell: bash
+        run: |
+          large=$(git ls-files -z | xargs -0 -I{} sh -c 'test -f "{}" && stat -c "%s %n" "{}"' | awk '$1 > 5242880 {print $2}')
+          if [ -n "$large" ]; then
+            lfs_files=$(git lfs ls-files -n)
+            offenders=""
+            while IFS= read -r f; do
+              echo "$lfs_files" | grep -qxF "$f" || offenders="$offenders$f"$'\n'
+            done <<< "$large"
+            if [ -n "$offenders" ]; then
+              echo "Files over 5MB tracked outside Git LFS:"
+              echo "$offenders"
+              exit 1
+            fi
+          fi
