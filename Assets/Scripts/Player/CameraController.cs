@@ -14,9 +14,14 @@ public class CameraController : MonoBehaviour
     bool startHeadBobbing = false;
     bool isInitialized = false;
 
+    Vector3 originalPosition;
     float timer = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
- 
+
+    public void Start()
+    {
+        originalPosition = transform.position;
+    }
 
     public void initialize(float cameraSensitivity, GameObject follow)
     {
@@ -56,7 +61,10 @@ public class CameraController : MonoBehaviour
         {
             timer += Time.deltaTime;
             float val = amplitude * Mathf.Sin(timer * frequency * 2f * Mathf.PI);
-            xRotation += val;
+            //xRotation += val;
+            Vector3 tempPosition = transform.position;
+            tempPosition.y = originalPosition.y + val;
+            transform.position = tempPosition;
         }
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -65,7 +73,6 @@ public class CameraController : MonoBehaviour
         follow.transform.Rotate(Vector3.up * mouseX);
 
 
-        Vector3 position = transform.position;
 
         
 
