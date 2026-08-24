@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5688226131203349692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Footsteps/Surface
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Surface
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1003573900
+    data2: 2306001318
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Wood
+  - Carpet
+  - Stone
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,13 +47,15 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 124498854882249444}
   - {fileID: 1647864962723302684}
-  EditorParameters: []
+  EditorParameters:
+  - {fileID: 5270804645332613018}
+  - {fileID: 9068651010055368938}
   MasterBanks:
   - {fileID: 2649819470846917877}
   StringsBanks:
   - {fileID: 8282329240067557869}
   cacheVersion: 131860
-  cacheTime: 639231590792183826
+  cacheTime: 639231764435478271
   SerializableEventsDict:
   - key: event:/Footsteps
     index: 0
@@ -54,9 +83,10 @@ MonoBehaviour:
   - {fileID: 6445851561506573378}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: 7396207862478642017}
+  - {fileID: -5688226131203349692}
   MinDistance: 1
   MaxDistance: 20
   Length: 568
@@ -122,8 +152,32 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639231590081131432
+  lastModified: 639231764435438260
   FileSizes: []
+  Exists: 1
+--- !u!114 &5270804645332613018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Distance
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Distance
+  StudioPath: parameter:/Distance
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1959951300
+    data2: 506634103
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &5704446861714052142
 MonoBehaviour:
@@ -158,7 +212,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639231590792183826
+  lastModified: 639231764435308271
   FileSizes: []
   Exists: 1
 --- !u!114 &7396207862478642017
@@ -182,7 +236,7 @@ MonoBehaviour:
     data1: 1959951300
     data2: 506634103
   Type: 0
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &7927898024828576022
@@ -220,8 +274,35 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639231590081181436
+  lastModified: 639231764435478271
   FileSizes:
   - Name: 
-    Value: 972
+    Value: 1022
+  Exists: 1
+--- !u!114 &9068651010055368938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Surface
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Surface
+  StudioPath: parameter:/Surface
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1003573900
+    data2: 2306001318
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Wood
+  - Carpet
+  - Stone
   Exists: 1
