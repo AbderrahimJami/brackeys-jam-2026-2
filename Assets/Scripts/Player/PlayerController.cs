@@ -1,11 +1,15 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.Assertions;
+
 
 
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController Instance { get; private set; }
 
     [Header("Player Setting")]
     [SerializeField]
@@ -49,6 +53,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     HeadBobbingProfiles running;
 
+
+
+    [Header("Interaction Settings")]
+    [SerializeField]
+    float maxInteractionDist = 10f;
+
+    [SerializeField]
+    Image crosshair = null;
+    [SerializeField]
+    LayerMask interactableMask;
+
     bool doJump = false;
     bool sprinting = false;
 
@@ -60,8 +75,28 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     CapsuleCollider collider;
 
-    CameraController cameraController;
+    CameraController cameraController = null;
+    Inventory inventory;
 
+
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void OnValidate()
+    {
+        if (cameraController != null)
+        {
+            cameraController.initialize(cameraSensitivity, gameObject);
+            cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start(){
@@ -69,17 +104,43 @@ public class PlayerController : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
-
         cameraController = camera.GetComponent<CameraController>();
+        inventory = new Inventory();
+        
+        Assert.IsTrue(rb != null, "RB cannot be NULL");
+        Assert.IsTrue(collider != null, "collider cannot be NULL");
+        Assert.IsTrue(crosshair != null, "Crosshair image cannot be NULL");
 
         cameraController.initialize(cameraSensitivity, gameObject);
+        cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
-
     }
-  
+
+ 
+    void handleInteractions()
+    {
+        
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, maxInteractionDist, interactableMask))
+        {
+            crosshair.color = Color.red;
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                InteractionInterface i = hit.transform.gameObject.GetComponent<InteractionInterface>();
+                if (i != null)
+                    i.Interact(gameObject);
+            }
+        }
+        else
+        {
+            crosshair.color = Color.black;
+        }
+    }
+
     bool IsPlayerGrounded()
     {
         Vector3 worldCenter = transform.TransformPoint(collider.center);
@@ -97,6 +158,7 @@ public class PlayerController : MonoBehaviour
             groundCheckDist,
             whatCanUserStandOn
         );
+
     }
 
 
@@ -107,17 +169,19 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsPlayerGrounded())
-        {
-            doJump = true;
-        }
+        userInput = (transform.right * moveX) + (transform.forward * moveZ);
+        userInput.Normalize();
 
+        // handling sprint input
         sprinting = Input.GetKey(KeyCode.LeftShift);
 
+        // handling jump input
+        if (Input.GetKeyDown(KeyCode.Space) && IsPlayerGrounded())
+            doJump = true;
+        
 
-        userInput = (transform.right * moveX) + (transform.forward * moveZ);
-
-        userInput.Normalize();
+        // handling interactions
+        handleInteractions();
 
 
     }

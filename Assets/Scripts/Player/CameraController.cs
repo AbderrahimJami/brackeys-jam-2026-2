@@ -72,9 +72,5 @@ public class CameraController : MonoBehaviour
 
         follow.transform.Rotate(Vector3.up * mouseX);
 
-
-
-        
-
     }
 }

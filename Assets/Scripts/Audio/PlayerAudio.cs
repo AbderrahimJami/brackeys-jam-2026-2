@@ -67,8 +67,7 @@ public class FootstepAudio : MonoBehaviour
     }
 
     void PlayFootstep()
-    {
-        Debug.Log($"value: {DetectSurface()}");       
+    {  
 
         EventInstance instance = RuntimeManager.CreateInstance(footstepEvent);
         RuntimeManager.StudioSystem.setParameterByNameWithLabel("Surface", DetectSurface());
