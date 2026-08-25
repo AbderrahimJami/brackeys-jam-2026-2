@@ -14,23 +14,29 @@ public class PlayerController : MonoBehaviour
     [Header("Player Setting")]
     [SerializeField]
     float walkSpeed = 5f;
-    [SerializeField]
-    float sprintSpeed = 10f;
+    //[SerializeField]
+    //float sprintSpeed = 10f;
 
     [SerializeField]
-    float fixedJumpForce = 15f;
-    
-    [SerializeField]
-    float gravityWhenJumping = 1f;
-    
-    [SerializeField]
-    float gravityWhenFalling = 1f;
+    float acceleration = 15f;
 
     [SerializeField]
-    float groundCheckDist = 0.7f;
+    float deceleration = 20f;
 
-    [SerializeField]
-    LayerMask whatCanUserStandOn;
+    //[SerializeField]
+    //float fixedJumpForce = 15f;
+
+    //[SerializeField]
+    //float gravityWhenJumping = 1f;
+
+    //[SerializeField]
+    //float gravityWhenFalling = 1f;
+
+    //[SerializeField]
+    //float groundCheckDist = 0.7f;
+
+    //[SerializeField]
+    //LayerMask whatCanUserStandOn;
 
 
     [Header("Camera Setting")]
@@ -38,7 +44,7 @@ public class PlayerController : MonoBehaviour
     Camera camera;
     [SerializeField]
     float cameraSensitivity = 100f;
-    
+
     [System.Serializable]
     private struct HeadBobbingProfiles
     {
@@ -50,8 +56,8 @@ public class PlayerController : MonoBehaviour
     HeadBobbingProfiles idle;
     [SerializeField]
     HeadBobbingProfiles walking;
-    [SerializeField]
-    HeadBobbingProfiles running;
+    //[SerializeField]
+    //HeadBobbingProfiles running;
 
 
 
@@ -68,7 +74,7 @@ public class PlayerController : MonoBehaviour
     bool sprinting = false;
 
 
-    
+
 
     Vector3 userInput = Vector3.zero;
 
@@ -99,14 +105,15 @@ public class PlayerController : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start(){
+    void Start()
+    {
 
-        
+
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
         cameraController = camera.GetComponent<CameraController>();
         inventory = new Inventory();
-        
+
         Assert.IsTrue(rb != null, "RB cannot be NULL");
         Assert.IsTrue(collider != null, "collider cannot be NULL");
         Assert.IsTrue(crosshair != null, "Crosshair image cannot be NULL");
@@ -118,10 +125,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
- 
+
     void handleInteractions()
     {
-        
+
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxInteractionDist, interactableMask))
@@ -141,25 +148,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool IsPlayerGrounded()
-    {
-        Vector3 worldCenter = transform.TransformPoint(collider.center);
+    //bool IsPlayerGrounded()
+    //{
+    //    Vector3 worldCenter = transform.TransformPoint(collider.center);
 
-        float radius = collider.radius;
-        float halfHeight = collider.height * 0.5f;
+    //    float radius = collider.radius;
+    //    float halfHeight = collider.height * 0.5f;
 
-        Vector3 bottom = worldCenter + Vector3.down * (halfHeight - radius);
+    //    Vector3 bottom = worldCenter + Vector3.down * (halfHeight - radius);
 
-        return Physics.SphereCast(
-            bottom,
-            radius * 0.9f,
-            Vector3.down,
-            out RaycastHit hit,
-            groundCheckDist,
-            whatCanUserStandOn
-        );
+    //    return Physics.SphereCast(
+    //        bottom,
+    //        radius * 0.9f,
+    //        Vector3.down,
+    //        out RaycastHit hit,
+    //        groundCheckDist,
+    //        whatCanUserStandOn
+    //    );
 
-    }
+    //}
 
 
     // Update is called once per frame
@@ -169,55 +176,63 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
-        userInput = (transform.right * moveX) + (transform.forward * moveZ);
-        userInput.Normalize();
+        Vector3 input = new Vector3(moveX, 0f, moveZ);
+
+        if (input.sqrMagnitude > 1f)
+            input.Normalize();
+
+        userInput = transform.TransformDirection(input);
+        userInput.y = 0f;
 
         // handling sprint input
-        sprinting = Input.GetKey(KeyCode.LeftShift);
+        //sprinting = Input.GetKey(KeyCode.LeftShift);
 
         // handling jump input
-        if (Input.GetKeyDown(KeyCode.Space) && IsPlayerGrounded())
-            doJump = true;
-        
+        //if (Input.GetKeyDown(KeyCode.Space) && IsPlayerGrounded())
+        //    doJump = true;
+
 
         // handling interactions
         handleInteractions();
 
 
+        // head bobbing
+        handleHeadBobbing();
+
     }
 
 
-    private Vector3 handleJumpAndFall(Vector3 velocity)
-    {
+    //private Vector3 handleJumpAndFall(Vector3 velocity)
+    //{
 
-        if (doJump)
-        {
-            doJump = false;
-            velocity.y = fixedJumpForce;
-        }
-
-
-        // falling and jumping conditions
-        if (rb.linearVelocity.y > 0f)
-        {
-            // going up
-            velocity.y += Physics.gravity.y * gravityWhenJumping;
-        }
-
-        else if (rb.linearVelocity.y < 0f)
-        {
-            // falling
-            velocity.y += Physics.gravity.y * gravityWhenFalling;
-        }
+    //    if (doJump)
+    //    {
+    //        doJump = false;
+    //        velocity.y = fixedJumpForce;
+    //    }
 
 
-        return velocity;
-    }
+    //    // falling and jumping conditions
+    //    if (rb.linearVelocity.y > 0f)
+    //    {
+    //        // going up
+    //        velocity.y += Physics.gravity.y * gravityWhenJumping;
+    //    }
+
+    //    else if (rb.linearVelocity.y < 0f)
+    //    {
+    //        // falling
+    //        velocity.y += Physics.gravity.y * gravityWhenFalling;
+    //    }
+
+
+    //    return velocity;
+    //}
 
 
     private void handleHeadBobbing()
     {
-        if (userInput.x == 0f && userInput.z == 0f)
+        if (userInput.sqrMagnitude < 0.01f)
         {
 
             cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
@@ -232,16 +247,36 @@ public class PlayerController : MonoBehaviour
     {
 
         // movement related
-        Vector3 velocity = sprinting ? userInput * sprintSpeed : userInput * walkSpeed;
+        //Vector3 velocity = sprinting ? userInput * sprintSpeed : userInput * walkSpeed;
+        Vector3 targetVelocity = userInput * walkSpeed;
+
+        Vector3 currentVelocity = rb.linearVelocity;
+
+        Vector3 currentHorizontalVelocity = new Vector3(
+            currentVelocity.x,
+            0f,
+            currentVelocity.z
+        );
+
+        float movementRate = userInput.sqrMagnitude > 0.01f
+            ? acceleration
+            : deceleration;
+
+        Vector3 horizontalVelocity = Vector3.MoveTowards(
+            currentHorizontalVelocity,
+            targetVelocity,
+            movementRate * Time.fixedDeltaTime
+        );
+
+        Vector3 velocity = horizontalVelocity;
 
 
         velocity.y = rb.linearVelocity.y;
 
-        // jump and fall
-        velocity = handleJumpAndFall(velocity);
 
-        // head bobbing
-        handleHeadBobbing();
+        // jump and fall
+        //velocity = handleJumpAndFall(velocity);
+
 
 
         rb.linearVelocity = velocity;

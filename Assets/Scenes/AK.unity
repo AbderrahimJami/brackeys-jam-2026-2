@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 301409877}
     - target: {fileID: 5257916500564726759, guid: 9153ccdb8c162c24790670768fde942b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1920
+      value: 1929
       objectReference: {fileID: 0}
     - target: {fileID: 6819346949309480542, guid: 9153ccdb8c162c24790670768fde942b, type: 3}
       propertyPath: crosshair

@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
 
     public void Start()
     {
-        originalPosition = transform.position;
+        originalPosition = transform.localPosition ;
     }
 
     public void initialize(float cameraSensitivity, GameObject follow)
@@ -60,11 +60,11 @@ public class CameraController : MonoBehaviour
         if (startHeadBobbing)
         {
             timer += Time.deltaTime;
-            float val = amplitude * Mathf.Sin(timer * frequency * 2f * Mathf.PI);
+            float val = amplitude * Mathf.Sin(timer * frequency);
             //xRotation += val;
-            Vector3 tempPosition = transform.position;
+            Vector3 tempPosition = transform.localPosition;
             tempPosition.y = originalPosition.y + val;
-            transform.position = tempPosition;
+            transform.localPosition = tempPosition;
         }
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
