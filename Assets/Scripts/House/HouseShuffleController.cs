@@ -21,8 +21,12 @@ namespace TrustNoOne.Shuffle
         [Range(0f, 1f)] public float chanceOnDoor = 0.25f;
         [Range(0f, 1f)] public float chanceOnOther = 0f;
 
+        [Header("Progression")]
+        [Tooltip("keys the player holds. locked doors open as this goes up")]
+        public int playerKeys = 0;
+
         [Header("Generation")]
-        public int maxAttempts = 500;
+        public int maxAttempts = 3000;
         public bool allowRotation = true;
         public bool requireAllRoomsReachable = true;
         public bool logShuffles = true;
@@ -35,6 +39,8 @@ namespace TrustNoOne.Shuffle
         RoomInstance playerRoom;
         HouseGenerator generator;
         float lastShuffleTime;
+        int roomsOccupied;   // how many room triggers the player is inside right now
+        bool shufflePending; // asked to shuffle while in a doorway, run it once clear
 
         void Awake()
         {
@@ -75,9 +81,30 @@ namespace TrustNoOne.Shuffle
         // player is now safely inside this room, so it's the one that stays put
         public void NotifyRoomEntered(RoomInstance room)
         {
+            roomsOccupied++;
             if (playerRoom == room) return;
             playerRoom = room;
             GameEvents.Interact(InteractionKind.RoomEnter);
+        }
+
+        public void NotifyRoomLeft(RoomInstance room)
+        {
+            roomsOccupied--;
+            if (roomsOccupied < 0) roomsOccupied = 0;
+
+            // fully inside one room again, so run whatever we held back
+            if (shufflePending && roomsOccupied == 1)
+            {
+                shufflePending = false;
+                Shuffle();
+            }
+        }
+
+        // call this when a key is picked up. reopens doors without moving anything
+        public void SetPlayerKeys(int keys)
+        {
+            playerKeys = keys;
+            Apply(layout);
         }
 
         void HandleInteraction(InteractionKind kind)
@@ -102,9 +129,25 @@ namespace TrustNoOne.Shuffle
             }
         }
 
+        // prints the map + where the player is. use this when something looks wrong
+        [ContextMenu("Log Layout")]
+        public void LogLayout()
+        {
+            Debug.Log("[House] player in: " + (playerRoom != null ? playerRoom.Id : "NONE")
+                + ", keys: " + playerKeys + "\n" + HouseGenerator.Print(layout));
+        }
+
         [ContextMenu("Force Shuffle")]
         public void Shuffle()
         {
+            // if the player straddles two rooms (a doorway) a shuffle can slide a room
+            // onto them and seal them in. hold it until they're clear
+            if (playerRoom != null && roomsOccupied != 1)
+            {
+                shufflePending = true;
+                return;
+            }
+
             string playerId = playerRoom != null ? playerRoom.Id : null;
             var res = generator.Generate(Templates(), layout, playerId, Config());
 
@@ -138,8 +181,32 @@ namespace TrustNoOne.Shuffle
                 var inst = Find(placed.Template.Id);
                 if (inst == null) continue;
                 for (int d = 0; d < 4; d++)
-                    inst.SetDoorOpen((Dir)d, layout.Connected(placed, (Dir)d));
+                {
+                    int lockLevel = layout.ConnectionLock(placed, (Dir)d);
+                    DoorState st;
+                    if (lockLevel < 0) st = DoorState.Wall;
+                    else if (lockLevel > playerKeys) st = DoorState.Locked;
+                    else st = DoorState.Open;
+                    inst.SetDoorState((Dir)d, st);
+                }
             }
+
+            WarnIfPlayerSealed();
+        }
+
+        // the validator should make this impossible, so shout loudly if it happens
+        void WarnIfPlayerSealed()
+        {
+            if (playerRoom == null || layout == null) return;
+            var placed = layout.ById(playerRoom.Id);
+            if (placed == null) return;
+
+            for (int d = 0; d < 4; d++)
+            {
+                int lockLevel = layout.ConnectionLock(placed, (Dir)d);
+                if (lockLevel >= 0 && lockLevel <= playerKeys) return;
+            }
+            Debug.LogError("[House] player is sealed in " + playerRoom.Id + " with " + playerKeys + " keys");
         }
 
         RoomInstance Find(string id)
@@ -165,7 +232,8 @@ namespace TrustNoOne.Shuffle
                 Height = gridHeight,
                 MaxAttempts = maxAttempts,
                 AllowRotation = allowRotation,
-                RequireAllRoomsReachable = requireAllRoomsReachable
+                RequireAllRoomsReachable = requireAllRoomsReachable,
+                PlayerKeys = playerKeys
             };
         }
 

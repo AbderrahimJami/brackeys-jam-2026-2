@@ -19,13 +19,17 @@ namespace TrustNoOne.Shuffle
             public bool n, e, s, w;
             public bool anchored;
             public int fx, fy;
+            public int minKeys;
+            public int[] locks;
             public RoomType[] forbidden;
         }
 
-        static Spec S(string name, RoomType type, string doors, bool anchored = false, int fx = 0, int fy = 0, RoomType[] forbidden = null)
+        static Spec S(string name, RoomType type, string doors, bool anchored = false, int fx = 0, int fy = 0, RoomType[] forbidden = null, int minKeys = 0, int[] locks = null)
         {
             var sp = new Spec();
             sp.name = name; sp.type = type; sp.anchored = anchored; sp.fx = fx; sp.fy = fy;
+            sp.minKeys = minKeys;
+            sp.locks = locks == null ? new int[4] : locks;
             sp.forbidden = forbidden == null ? new RoomType[0] : forbidden;
             sp.n = doors.Contains("N"); sp.e = doors.Contains("E");
             sp.s = doors.Contains("S"); sp.w = doors.Contains("W");
@@ -44,7 +48,8 @@ namespace TrustNoOne.Shuffle
                 S("LivingRoom", RoomType.LivingRoom, "NEW"),
                 S("Bedroom",    RoomType.Bedroom,    "SE",   false, 0, 0, new[] { RoomType.Kitchen }),
                 S("Bathroom",   RoomType.Bathroom,   "S",    false, 0, 0, new[] { RoomType.Kitchen }),
-                S("Study",      RoomType.Study,      "NW"),
+                // vault room, both doors need 2 keys
+                S("Study",      RoomType.Study,      "NW",   false, 0, 0, null, 2, new[] { 2, 0, 0, 2 }),
             };
 
             EnsureFolder();
@@ -82,6 +87,11 @@ namespace TrustNoOne.Shuffle
             def.fixedCell = new Vector2Int(sp.fx, sp.fy);
             def.allowRotation = !sp.anchored;
             def.required = true;
+            def.lockNorth = sp.locks[0];
+            def.lockEast = sp.locks[1];
+            def.lockSouth = sp.locks[2];
+            def.lockWest = sp.locks[3];
+            def.minKeys = sp.minKeys;
             foreach (var f in sp.forbidden) def.forbiddenNeighbours.Add(f);
             AssetDatabase.CreateAsset(def, DefFolder + "/" + sp.name + ".asset");
 
@@ -93,7 +103,7 @@ namespace TrustNoOne.Shuffle
 
             var trig = room.GetComponent<BoxCollider>();
             trig.isTrigger = true;
-            trig.size = new Vector3(CellSize - 4f, WallHeight, CellSize - 4f);
+            trig.size = new Vector3(CellSize, WallHeight, CellSize);
             trig.center = new Vector3(0f, WallHeight * 0.5f, 0f);
 
             // floor
@@ -122,6 +132,11 @@ namespace TrustNoOne.Shuffle
                     MakeWallPiece(gap.transform, (Dir)d, "Right", sideLen, off);
                     inst.doorways[d] = gap;
                     gap.SetActive(false);
+
+                    // the slab that blocks the gap when locked
+                    var locked = MakeWallPiece(side.transform, (Dir)d, "LockedDoor", DoorWidth, 0f);
+                    inst.lockedDoors[d] = locked;
+                    locked.SetActive(false);
                 }
             }
         }
@@ -135,7 +150,7 @@ namespace TrustNoOne.Shuffle
         }
 
         // length runs along the wall, offset slides it sideways
-        static void MakeWallPiece(Transform parent, Dir d, string name, float length, float offset)
+        static GameObject MakeWallPiece(Transform parent, Dir d, string name, float length, float offset)
         {
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = name;
@@ -159,6 +174,7 @@ namespace TrustNoOne.Shuffle
 
             go.transform.localPosition = pos;
             go.transform.localScale = scale;
+            return go;
         }
     }
 }

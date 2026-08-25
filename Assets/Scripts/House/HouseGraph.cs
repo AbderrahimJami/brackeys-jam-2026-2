@@ -7,6 +7,8 @@ namespace TrustNoOne.Shuffle
 {
     public enum Dir { North = 0, East = 1, South = 2, West = 3 }
 
+    public enum DoorState { Wall, Locked, Open }
+
     public static class DirUtil
     {
         public static Dir Opposite(Dir d) { return (Dir)(((int)d + 2) % 4); }
@@ -32,6 +34,12 @@ namespace TrustNoOne.Shuffle
         // doors at rotation 0, indexed by Dir
         public bool[] Doors = new bool[4];
 
+        // 0 = unlocked, 1-3 = needs that many keys
+        public int[] DoorLocks = new int[4];
+
+        // room isn't expected to be reachable until the player has this many keys
+        public int MinKeys;
+
         public HashSet<string> ForbiddenNeighbours = new HashSet<string>();
 
         public bool Anchored;          // never moves (safe room)
@@ -42,8 +50,17 @@ namespace TrustNoOne.Shuffle
 
         public bool HasDoor(Dir facing, int rotation)
         {
-            int idx = (((int)facing - rotation) % 4 + 4) % 4;
-            return Doors[idx];
+            return Doors[LocalIndex(facing, rotation)];
+        }
+
+        public int DoorLock(Dir facing, int rotation)
+        {
+            return DoorLocks[LocalIndex(facing, rotation)];
+        }
+
+        public static int LocalIndex(Dir facing, int rotation)
+        {
+            return (((int)facing - rotation) % 4 + 4) % 4;
         }
     }
 
@@ -54,6 +71,7 @@ namespace TrustNoOne.Shuffle
         public int Rotation; // 0-3, clockwise 90deg steps
 
         public bool HasDoor(Dir facing) { return Template.HasDoor(facing, Rotation); }
+        public int DoorLock(Dir facing) { return Template.DoorLock(facing, Rotation); }
     }
 
     public class HouseLayout
@@ -80,11 +98,21 @@ namespace TrustNoOne.Shuffle
         // two rooms are connected only if BOTH have a door facing each other
         public bool Connected(PlacedRoom a, Dir d)
         {
-            if (!a.HasDoor(d)) return false;
+            return ConnectionLock(a, d) >= 0;
+        }
+
+        // -1 means no doorway at all. otherwise the keys needed to pass
+        public int ConnectionLock(PlacedRoom a, Dir d)
+        {
+            if (!a.HasDoor(d)) return -1;
             int dx, dy; DirUtil.Offset(d, out dx, out dy);
             PlacedRoom b = At(a.X + dx, a.Y + dy);
-            if (b == null) return false;
-            return b.HasDoor(DirUtil.Opposite(d));
+            if (b == null) return -1;
+            Dir back = DirUtil.Opposite(d);
+            if (!b.HasDoor(back)) return -1;
+            int la = a.DoorLock(d);
+            int lb = b.DoorLock(back);
+            return la > lb ? la : lb;
         }
     }
 
@@ -94,6 +122,9 @@ namespace TrustNoOne.Shuffle
         public int MaxAttempts = 500;
         public bool AllowRotation = true;
         public bool RequireAllRoomsReachable = true;
+
+        // how many keys the player currently holds
+        public int PlayerKeys = 0;
     }
 
     public class ShuffleResult
@@ -222,7 +253,9 @@ namespace TrustNoOne.Shuffle
                 var cur = queue.Dequeue();
                 for (int d = 0; d < 4; d++)
                 {
-                    if (!layout.Connected(cur, (Dir)d)) continue;
+                    int lockLevel = layout.ConnectionLock(cur, (Dir)d);
+                    // no doorway, or locked beyond what the player can open
+                    if (lockLevel < 0 || lockLevel > cfg.PlayerKeys) continue;
                     int dx, dy; DirUtil.Offset((Dir)d, out dx, out dy);
                     var n = layout.At(cur.X + dx, cur.Y + dy);
                     if (n != null && !seen.Contains(n.Template.Id))
@@ -235,10 +268,13 @@ namespace TrustNoOne.Shuffle
 
             foreach (var r in layout.Rooms)
             {
+                // rooms gated behind more keys than we have aren't expected to be reachable yet
+                if (r.Template.MinKeys > cfg.PlayerKeys) continue;
+
                 bool mustReach = cfg.RequireAllRoomsReachable || r.Template.Required;
                 if (mustReach && !seen.Contains(r.Template.Id))
                 {
-                    reason = r.Template.Type + " unreachable";
+                    reason = r.Template.Type + " unreachable with " + cfg.PlayerKeys + " keys";
                     return false;
                 }
             }
@@ -261,15 +297,21 @@ namespace TrustNoOne.Shuffle
                     var r = l.At(x, y);
                     if (r == null) { top.Append("     "); mid.Append("     "); bot.Append("     "); continue; }
                     string label = r.Template.Type.Length >= 3 ? r.Template.Type.Substring(0, 3) : r.Template.Type.PadRight(3);
-                    top.Append("+" + (r.HasDoor(Dir.North) ? " . " : "---") + "+");
-                    mid.Append((r.HasDoor(Dir.West) ? "." : "|") + label + (r.HasDoor(Dir.East) ? "." : "|"));
-                    bot.Append("+" + (r.HasDoor(Dir.South) ? " . " : "---") + "+");
+                    top.Append("+" + (r.HasDoor(Dir.North) ? " " + Mark(r, Dir.North) + " " : "---") + "+");
+                    mid.Append((r.HasDoor(Dir.West) ? Mark(r, Dir.West) : "|") + label + (r.HasDoor(Dir.East) ? Mark(r, Dir.East) : "|"));
+                    bot.Append("+" + (r.HasDoor(Dir.South) ? " " + Mark(r, Dir.South) + " " : "---") + "+");
                 }
                 sb.AppendLine(top.ToString());
                 sb.AppendLine(mid.ToString());
                 sb.AppendLine(bot.ToString());
             }
             return sb.ToString();
+        }
+
+        static string Mark(PlacedRoom r, Dir d)
+        {
+            int l = r.DoorLock(d);
+            return l <= 0 ? "." : l.ToString();
         }
     }
 }

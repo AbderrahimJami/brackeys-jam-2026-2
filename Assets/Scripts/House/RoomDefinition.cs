@@ -16,6 +16,15 @@ namespace TrustNoOne.Shuffle
         public bool doorSouth;
         public bool doorWest;
 
+        [Header("Door locks: 0 = open, 1-3 = needs that many keys")]
+        public int lockNorth;
+        public int lockEast;
+        public int lockSouth;
+        public int lockWest;
+
+        [Tooltip("room isn't expected to be reachable until the player has this many keys")]
+        public int minKeys;
+
         [Header("Rules")]
         public List<RoomType> forbiddenNeighbours = new List<RoomType>();
 
@@ -37,6 +46,11 @@ namespace TrustNoOne.Shuffle
             t.Doors[1] = doorEast;
             t.Doors[2] = doorSouth;
             t.Doors[3] = doorWest;
+            t.DoorLocks[0] = lockNorth;
+            t.DoorLocks[1] = lockEast;
+            t.DoorLocks[2] = lockSouth;
+            t.DoorLocks[3] = lockWest;
+            t.MinKeys = minKeys;
             foreach (var f in forbiddenNeighbours) t.ForbiddenNeighbours.Add(f.ToString());
             t.Anchored = anchored;
             t.FixedX = fixedCell.x;

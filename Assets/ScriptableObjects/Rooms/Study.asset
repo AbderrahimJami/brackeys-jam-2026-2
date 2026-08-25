@@ -17,6 +17,11 @@ MonoBehaviour:
   doorEast: 0
   doorSouth: 0
   doorWest: 1
+  lockNorth: 2
+  lockEast: 0
+  lockSouth: 0
+  lockWest: 2
+  minKeys: 2
   forbiddenNeighbours: 
   anchored: 0
   fixedCell: {x: 0, y: 0}

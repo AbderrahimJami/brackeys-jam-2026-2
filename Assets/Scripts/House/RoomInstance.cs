@@ -11,6 +11,7 @@ namespace TrustNoOne.Shuffle
         [Header("Index 0-3 = N/E/S/W at rotation 0")]
         public GameObject[] doorways = new GameObject[4];
         public GameObject[] wallFillers = new GameObject[4];
+        public GameObject[] lockedDoors = new GameObject[4];
 
         public int CurrentRotation { get; private set; }
         public Vector2Int Cell { get; private set; }
@@ -31,18 +32,31 @@ namespace TrustNoOne.Shuffle
         }
 
         // facing is a world direction, map it back to the local socket
-        public void SetDoorOpen(Dir facing, bool open)
+        public void SetDoorState(Dir facing, DoorState state)
         {
-            int idx = (((int)facing - CurrentRotation) % 4 + 4) % 4;
-            if (doorways[idx] != null) doorways[idx].SetActive(open);
-            if (wallFillers[idx] != null) wallFillers[idx].SetActive(!open);
+            int idx = RoomTemplate.LocalIndex(facing, CurrentRotation);
+            if (wallFillers[idx] != null) wallFillers[idx].SetActive(state == DoorState.Wall);
+            if (doorways[idx] != null) doorways[idx].SetActive(state != DoorState.Wall);
+            if (lockedDoors[idx] != null) lockedDoors[idx].SetActive(state == DoorState.Locked);
         }
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponentInParent<PlayerController>() == null) return;
+            if (!IsPlayer(other)) return;
             if (HouseShuffleController.Instance != null)
                 HouseShuffleController.Instance.NotifyRoomEntered(this);
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (!IsPlayer(other)) return;
+            if (HouseShuffleController.Instance != null)
+                HouseShuffleController.Instance.NotifyRoomLeft(this);
+        }
+
+        static bool IsPlayer(Collider c)
+        {
+            return c.GetComponentInParent<PlayerController>() != null;
         }
     }
 }
