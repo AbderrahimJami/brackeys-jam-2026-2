@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02493cce1df0e5c4ba1c06f39b9d68de, type: 3}
+  m_Name: LivingRoom
+  m_EditorClassIdentifier: Assembly-CSharp::TrustNoOne.Shuffle.RoomDefinition
+  roomType: 5
+  doorNorth: 1
+  doorEast: 1
+  doorSouth: 0
+  doorWest: 1
+  forbiddenNeighbours: 
+  anchored: 0
+  fixedCell: {x: 0, y: 0}
+  allowRotation: 1
+  required: 1
