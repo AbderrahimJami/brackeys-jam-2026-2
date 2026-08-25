@@ -7,6 +7,7 @@ public enum InteractionKind
     Door,
     LightSwitch,
     RoomExit,
+    RoomEnter,
     Other
 }
 

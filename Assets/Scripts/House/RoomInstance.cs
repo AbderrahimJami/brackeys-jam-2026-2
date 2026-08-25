@@ -42,14 +42,7 @@ namespace TrustNoOne.Shuffle
         {
             if (other.GetComponentInParent<PlayerController>() == null) return;
             if (HouseShuffleController.Instance != null)
-                HouseShuffleController.Instance.SetPlayerRoom(this);
-        }
-
-        void OnTriggerExit(Collider other)
-        {
-            if (other.GetComponentInParent<PlayerController>() == null) return;
-            if (HouseShuffleController.Instance != null)
-                HouseShuffleController.Instance.NotifyRoomExit(this);
+                HouseShuffleController.Instance.NotifyRoomEntered(this);
         }
     }
 }

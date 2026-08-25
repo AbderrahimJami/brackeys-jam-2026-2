@@ -15,7 +15,7 @@ namespace TrustNoOne.Shuffle
 
         [Header("Shuffle chance per event")]
         [Range(0f, 1f)] public float chanceOnKeyItem = 1f;
-        [Range(0f, 1f)] public float chanceOnRoomExit = 0.55f;
+        [Range(0f, 1f)] public float chanceOnRoomEnter = 0.4f;
         [Range(0f, 1f)] public float chanceOnLightSwitch = 0.3f;
         [Range(0f, 1f)] public float chanceOnPickup = 0.15f;
         [Range(0f, 1f)] public float chanceOnDoor = 0.25f;
@@ -27,10 +27,14 @@ namespace TrustNoOne.Shuffle
         public bool requireAllRoomsReachable = true;
         public bool logShuffles = true;
 
+        [Tooltip("seconds before another shuffle can fire")]
+        public float shuffleCooldown = 1.5f;
+
         readonly List<RoomInstance> rooms = new List<RoomInstance>();
         HouseLayout layout;
         RoomInstance playerRoom;
         HouseGenerator generator;
+        float lastShuffleTime;
 
         void Awake()
         {
@@ -68,15 +72,19 @@ namespace TrustNoOne.Shuffle
             playerRoom = room;
         }
 
-        public void NotifyRoomExit(RoomInstance room)
+        // player is now safely inside this room, so it's the one that stays put
+        public void NotifyRoomEntered(RoomInstance room)
         {
-            GameEvents.Interact(InteractionKind.RoomExit);
+            if (playerRoom == room) return;
+            playerRoom = room;
+            GameEvents.Interact(InteractionKind.RoomEnter);
         }
 
         void HandleInteraction(InteractionKind kind)
         {
             float chance = ChanceFor(kind);
             if (chance <= 0f) return;
+            if (Time.time - lastShuffleTime < shuffleCooldown) return;
             if (Random.value > chance) return;
             Shuffle();
         }
@@ -86,7 +94,7 @@ namespace TrustNoOne.Shuffle
             switch (kind)
             {
                 case InteractionKind.KeyItem: return chanceOnKeyItem;
-                case InteractionKind.RoomExit: return chanceOnRoomExit;
+                case InteractionKind.RoomEnter: return chanceOnRoomEnter;
                 case InteractionKind.LightSwitch: return chanceOnLightSwitch;
                 case InteractionKind.Pickup: return chanceOnPickup;
                 case InteractionKind.Door: return chanceOnDoor;
@@ -107,6 +115,7 @@ namespace TrustNoOne.Shuffle
             }
 
             Apply(res.Layout);
+            lastShuffleTime = Time.time;
             if (logShuffles) Debug.Log("[House] shuffled in " + res.Attempts + " attempts");
             if (GameEvents.HouseShuffled != null) GameEvents.HouseShuffled();
         }

@@ -93,7 +93,7 @@ namespace TrustNoOne.Shuffle
 
             var trig = room.GetComponent<BoxCollider>();
             trig.isTrigger = true;
-            trig.size = new Vector3(CellSize - 1f, WallHeight, CellSize - 1f);
+            trig.size = new Vector3(CellSize - 4f, WallHeight, CellSize - 4f);
             trig.center = new Vector3(0f, WallHeight * 0.5f, 0f);
 
             // floor
