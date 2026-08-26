@@ -169,43 +169,127 @@ namespace TrustNoOne.Shuffle
             return result;
         }
 
+        // grow the house outward from the pinned rooms so it's connected by construction.
+        // random scatter + reject almost never lands a valid layout once the grid has gaps
         HouseLayout BuildCandidate(List<RoomTemplate> rooms, HouseLayout previous, string playerRoomId, ShuffleConfig cfg)
         {
             var layout = new HouseLayout(cfg.Width, cfg.Height);
-            var takenCells = new HashSet<int>();
-            var movable = new List<RoomTemplate>();
+            var taken = new HashSet<int>();
+            var remaining = new List<RoomTemplate>();
 
             foreach (var t in rooms)
             {
                 if (t.Anchored)
                 {
                     layout.Rooms.Add(new PlacedRoom { Template = t, X = t.FixedX, Y = t.FixedY, Rotation = 0 });
-                    takenCells.Add(t.FixedY * cfg.Width + t.FixedX);
+                    taken.Add(t.FixedY * cfg.Width + t.FixedX);
                 }
                 else if (previous != null && t.Id == playerRoomId)
                 {
                     var old = previous.ById(t.Id);
                     layout.Rooms.Add(new PlacedRoom { Template = t, X = old.X, Y = old.Y, Rotation = old.Rotation });
-                    takenCells.Add(old.Y * cfg.Width + old.X);
+                    taken.Add(old.Y * cfg.Width + old.X);
                 }
-                else movable.Add(t);
+                else remaining.Add(t);
             }
 
-            // free cells, shuffled
-            var free = new List<int>();
-            for (int i = 0; i < cfg.Width * cfg.Height; i++)
-                if (!takenCells.Contains(i)) free.Add(i);
-            Shuffle(free);
+            Shuffle(remaining);
 
-            for (int i = 0; i < movable.Count; i++)
+            // repeatedly hang an unplaced room off an open doorway of a placed one
+            while (remaining.Count > 0)
             {
-                int cell = free[i];
-                var t = movable[i];
-                int rot = (cfg.AllowRotation && t.AllowRotation) ? rng.Next(4) : 0;
-                layout.Rooms.Add(new PlacedRoom { Template = t, X = cell % cfg.Width, Y = cell / cfg.Width, Rotation = rot });
+                var openings = FindOpenings(layout, cfg, taken);
+                if (openings.Count == 0) break;
+                Shuffle(openings);
+
+                if (!PlaceOne(layout, cfg, taken, remaining, openings)) break;
+            }
+
+            // anything we couldn't attach goes in a random hole. validation will reject it
+            if (remaining.Count > 0)
+            {
+                var free = new List<int>();
+                for (int i = 0; i < cfg.Width * cfg.Height; i++)
+                    if (!taken.Contains(i)) free.Add(i);
+                Shuffle(free);
+
+                for (int i = 0; i < remaining.Count && i < free.Count; i++)
+                {
+                    var t = remaining[i];
+                    int rot = (cfg.AllowRotation && t.AllowRotation) ? rng.Next(4) : 0;
+                    layout.Rooms.Add(new PlacedRoom { Template = t, X = free[i] % cfg.Width, Y = free[i] / cfg.Width, Rotation = rot });
+                }
             }
 
             return layout;
+        }
+
+        struct Opening
+        {
+            public PlacedRoom From;
+            public Dir Facing;
+            public int X, Y;
+        }
+
+        // every doorway on a placed room that points at an empty in-bounds cell
+        List<Opening> FindOpenings(HouseLayout layout, ShuffleConfig cfg, HashSet<int> taken)
+        {
+            var list = new List<Opening>();
+            foreach (var placed in layout.Rooms)
+            {
+                for (int d = 0; d < 4; d++)
+                {
+                    if (!placed.HasDoor((Dir)d)) continue;
+                    int dx, dy; DirUtil.Offset((Dir)d, out dx, out dy);
+                    int nx = placed.X + dx, ny = placed.Y + dy;
+                    if (nx < 0 || ny < 0 || nx >= cfg.Width || ny >= cfg.Height) continue;
+                    if (taken.Contains(ny * cfg.Width + nx)) continue;
+                    list.Add(new Opening { From = placed, Facing = (Dir)d, X = nx, Y = ny });
+                }
+            }
+            return list;
+        }
+
+        bool PlaceOne(HouseLayout layout, ShuffleConfig cfg, HashSet<int> taken, List<RoomTemplate> remaining, List<Opening> openings)
+        {
+            var rotations = new List<int> { 0, 1, 2, 3 };
+
+            foreach (var op in openings)
+            {
+                Dir back = DirUtil.Opposite(op.Facing);
+
+                for (int i = 0; i < remaining.Count; i++)
+                {
+                    var t = remaining[i];
+                    Shuffle(rotations);
+
+                    foreach (int rot in rotations)
+                    {
+                        if (rot != 0 && (!cfg.AllowRotation || !t.AllowRotation)) continue;
+                        if (!t.HasDoor(back, rot)) continue;
+                        if (!AdjacencyOk(layout, t, op.X, op.Y)) continue;
+
+                        layout.Rooms.Add(new PlacedRoom { Template = t, X = op.X, Y = op.Y, Rotation = rot });
+                        taken.Add(op.Y * cfg.Width + op.X);
+                        remaining.RemoveAt(i);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        static bool AdjacencyOk(HouseLayout layout, RoomTemplate t, int x, int y)
+        {
+            for (int d = 0; d < 4; d++)
+            {
+                int dx, dy; DirUtil.Offset((Dir)d, out dx, out dy);
+                var n = layout.At(x + dx, y + dy);
+                if (n == null) continue;
+                if (t.ForbiddenNeighbours.Contains(n.Template.Type)) return false;
+                if (n.Template.ForbiddenNeighbours.Contains(t.Type)) return false;
+            }
+            return true;
         }
 
         void Shuffle<T>(List<T> list)
