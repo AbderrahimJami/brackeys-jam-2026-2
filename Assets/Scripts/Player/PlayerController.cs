@@ -1,8 +1,9 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.Assertions;
 
 
 
@@ -14,23 +15,14 @@ public class PlayerController : MonoBehaviour
     [Header("Player Setting")]
     [SerializeField]
     float walkSpeed = 5f;
-    [SerializeField]
-    float sprintSpeed = 10f;
+    //[SerializeField]
+    //float sprintSpeed = 10f;
 
     [SerializeField]
-    float fixedJumpForce = 15f;
-    
-    [SerializeField]
-    float gravityWhenJumping = 1f;
-    
-    [SerializeField]
-    float gravityWhenFalling = 1f;
+    float acceleration = 15f;
 
     [SerializeField]
-    float groundCheckDist = 0.7f;
-
-    [SerializeField]
-    LayerMask whatCanUserStandOn;
+    float deceleration = 20f;
 
 
     [Header("Camera Setting")]
@@ -38,7 +30,7 @@ public class PlayerController : MonoBehaviour
     Camera camera;
     [SerializeField]
     float cameraSensitivity = 100f;
-    
+
     [System.Serializable]
     private struct HeadBobbingProfiles
     {
@@ -50,8 +42,6 @@ public class PlayerController : MonoBehaviour
     HeadBobbingProfiles idle;
     [SerializeField]
     HeadBobbingProfiles walking;
-    [SerializeField]
-    HeadBobbingProfiles running;
 
 
 
@@ -64,19 +54,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask interactableMask;
 
-    bool doJump = false;
-    bool sprinting = false;
 
-
-    
-
+    HeadBobbingProfiles activeProfile;
     Vector3 userInput = Vector3.zero;
 
     Rigidbody rb;
     CapsuleCollider collider;
-
-    CameraController cameraController = null;
     Inventory inventory;
+    Transform oriantationTransform;
+    Camera mainCamera;
+    Vector3 mainCameraOriginalPosition;
+
+    bool startHeadBobbing = false;
+
+
+    float xRotation;
+    float yRotation;
+    float headBobbingTimer = 0f;
 
 
     public Inventory getInventory()
@@ -87,41 +81,38 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
     }
 
-    private void OnValidate()
-    {
-        if (cameraController != null)
-        {
-            cameraController.initialize(cameraSensitivity, gameObject);
-            cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
-        }
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start(){
+    void Start()
+    {
 
-        
+
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
-        cameraController = camera.GetComponent<CameraController>();
         inventory = new Inventory();
-        
+        oriantationTransform = transform.Find("Orientation");
+
         Assert.IsTrue(rb != null, "RB cannot be NULL");
         Assert.IsTrue(collider != null, "collider cannot be NULL");
         Assert.IsTrue(crosshair != null, "Crosshair image cannot be NULL");
 
-        cameraController.initialize(cameraSensitivity, gameObject);
-        cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
+
+        mainCamera = Camera.main;
+
+        mainCameraOriginalPosition = mainCamera.transform.localPosition;
+        
 
         Cursor.lockState = CursorLockMode.Locked;
 
     }
 
- 
+
     void handleInteractions()
     {
-        
+
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxInteractionDist, interactableMask))
@@ -138,90 +129,75 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool IsPlayerGrounded()
+
+
+    void lookAround()
     {
-        Vector3 worldCenter = transform.TransformPoint(collider.center);
+        float mouseX = Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
 
-        float radius = collider.radius;
-        float halfHeight = collider.height * 0.5f;
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 60f);
 
-        Vector3 bottom = worldCenter + Vector3.down * (halfHeight - radius);
+        yRotation += mouseX;
 
-        return Physics.SphereCast(
-            bottom,
-            radius * 0.9f,
-            Vector3.down,
-            out RaycastHit hit,
-            groundCheckDist,
-            whatCanUserStandOn
-        );
+        if (startHeadBobbing)
+        {
+            headBobbingTimer += Time.deltaTime;
+            
+            float val = activeProfile.amplitude * Mathf.Sin(headBobbingTimer * activeProfile.frequency);
+
+            Vector3 tempPosition = mainCamera.transform.localPosition;
+            tempPosition.y = mainCameraOriginalPosition.y + val; 
+
+            mainCamera.transform.localPosition = tempPosition;
+        }
+
+
+        mainCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        oriantationTransform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
     }
 
-
-    // Update is called once per frame
     void Update()
     {
 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
-        userInput = (transform.right * moveX) + (transform.forward * moveZ);
-        userInput.Normalize();
-
-        // handling sprint input
-        sprinting = Input.GetKey(KeyCode.LeftShift);
-
-        // handling jump input
-        if (Input.GetKeyDown(KeyCode.Space) && IsPlayerGrounded())
-            doJump = true;
+        Vector3 input = new Vector3(moveX, 0f, moveZ);
+        userInput = (oriantationTransform.forward * input.z) + (oriantationTransform.right * input.x);
         
+        if (userInput.sqrMagnitude > 1f)
+            userInput.Normalize();
+
+        userInput.y = 0f;
+
+        // handle camera + player rotation
+        lookAround();
 
         // handling interactions
         handleInteractions();
 
 
+        // head bobbing
+        handleHeadBobbing();
+
     }
 
-
-    private Vector3 handleJumpAndFall(Vector3 velocity)
-    {
-
-        if (doJump)
-        {
-            doJump = false;
-            velocity.y = fixedJumpForce;
-        }
-
-
-        // falling and jumping conditions
-        if (rb.linearVelocity.y > 0f)
-        {
-            // going up
-            velocity.y += Physics.gravity.y * gravityWhenJumping;
-        }
-
-        else if (rb.linearVelocity.y < 0f)
-        {
-            // falling
-            velocity.y += Physics.gravity.y * gravityWhenFalling;
-        }
-
-
-        return velocity;
-    }
 
 
     private void handleHeadBobbing()
     {
-        if (userInput.x == 0f && userInput.z == 0f)
+        if (userInput.sqrMagnitude < 0.01f)
         {
-
-            cameraController.setHeadBobbing(true, idle.frequency, idle.amplitude);
+            activeProfile = idle;
+            startHeadBobbing = true;
         }
         else
         {
-            cameraController.setHeadBobbing(true, walking.frequency, walking.amplitude);
+            activeProfile = walking;
+            startHeadBobbing = true;
         }
     }
 
@@ -229,19 +205,28 @@ public class PlayerController : MonoBehaviour
     {
 
         // movement related
-        Vector3 velocity = sprinting ? userInput * sprintSpeed : userInput * walkSpeed;
+        Vector3 targetVelocity = userInput * walkSpeed;
+        Vector3 currentVelocity = rb.linearVelocity;
 
+        Vector3 currentHorizontalVelocity = new Vector3(
+            currentVelocity.x,
+            0f,
+            currentVelocity.z
+        );
+
+        float movementRate = userInput.sqrMagnitude > 0.01f ? acceleration : deceleration;
+
+        Vector3 horizontalVelocity = Vector3.MoveTowards(
+            currentHorizontalVelocity,
+            targetVelocity,
+            movementRate * Time.fixedDeltaTime
+        );
+
+        Vector3 velocity = horizontalVelocity;
 
         velocity.y = rb.linearVelocity.y;
-
-        // jump and fall
-        velocity = handleJumpAndFall(velocity);
-
-        // head bobbing
-        handleHeadBobbing();
-
-
         rb.linearVelocity = velocity;
+
 
     }
 }

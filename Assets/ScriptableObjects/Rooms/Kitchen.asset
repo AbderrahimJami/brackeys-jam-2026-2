@@ -22,7 +22,10 @@ MonoBehaviour:
   lockSouth: 0
   lockWest: 0
   minKeys: 0
-  forbiddenNeighbours: 0400000002000000
+  minDistanceFromPlayer: 0
+  minDistanceFromSafeRoom: 0
+  isSafeRoom: 0
+  forbiddenNeighbours: 
   anchored: 0
   fixedCell: {x: 0, y: 0}
   allowRotation: 1

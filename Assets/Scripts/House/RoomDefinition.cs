@@ -25,6 +25,16 @@ namespace TrustNoOne.Shuffle
         [Tooltip("room isn't expected to be reachable until the player has this many keys")]
         public int minKeys;
 
+        [Header("Placement distance (0 = no constraint)")]
+        [Tooltip("must land at least this many doors from the player")]
+        public int minDistanceFromPlayer;
+
+        [Tooltip("must land at least this many doors from the safe room")]
+        public int minDistanceFromSafeRoom;
+
+        [Tooltip("tick on the safe room only, it's what the distance above is measured from")]
+        public bool isSafeRoom;
+
         [Header("Rules")]
         public List<RoomType> forbiddenNeighbours = new List<RoomType>();
 
@@ -50,7 +60,11 @@ namespace TrustNoOne.Shuffle
             t.DoorLocks[1] = lockEast;
             t.DoorLocks[2] = lockSouth;
             t.DoorLocks[3] = lockWest;
+
             t.MinKeys = minKeys;
+            t.MinDistanceFromPlayer = minDistanceFromPlayer;
+            t.MinDistanceFromSafeRoom = minDistanceFromSafeRoom;
+            t.IsSafeRoom = isSafeRoom;
             foreach (var f in forbiddenNeighbours) t.ForbiddenNeighbours.Add(f.ToString());
             t.Anchored = anchored;
             t.FixedX = fixedCell.x;
