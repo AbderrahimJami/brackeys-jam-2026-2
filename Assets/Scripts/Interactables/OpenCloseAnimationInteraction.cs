@@ -11,6 +11,9 @@ public class OpenCloseAnimationInteraction : MonoBehaviour, InteractionInterface
     string paramName = "isOpen";
     bool defaultValue = false;
 
+    [SerializeField]
+    public AudioSource soundToPlayOnInterect = null;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -20,5 +23,10 @@ public class OpenCloseAnimationInteraction : MonoBehaviour, InteractionInterface
     {
         bool newState = !animator.GetBool(paramName);
         animator.SetBool(paramName, newState);
+
+        if (soundToPlayOnInterect != null)
+        {
+            // Play audio
+        }
     }
 }

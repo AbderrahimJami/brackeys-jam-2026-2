@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickableInteractables : MonoBehaviour, InteractionInterface
+public class ReadableInteractables : MonoBehaviour, InteractionInterface
 {
     [SerializeField]
     public AudioClip soundToPlayOnInterect = null;
@@ -15,7 +15,6 @@ public class PickableInteractables : MonoBehaviour, InteractionInterface
         {
             // Play audio
         }
-
     }
 }
 
