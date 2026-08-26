@@ -137,6 +137,66 @@ namespace TrustNoOne.Shuffle
                 + ", keys: " + playerKeys + "\n" + HouseGenerator.Print(layout));
         }
 
+        // runs shuffles in memory without touching the scene, checks the distance rules hold
+        [ContextMenu("Stress Test")]
+        public void StressTest()
+        {
+            var templates = Templates();
+            var cfg = Config();
+            var gen = new HouseGenerator();
+            var cur = layout;
+
+            int ok = 0, failed = 0;
+            long attempts = 0;
+            string lastFail = null;
+            var closest = new Dictionary<string, int>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                var res = gen.Generate(templates, cur, playerRoom != null ? playerRoom.Id : null, cfg);
+                if (!res.Success) { failed++; lastFail = res.FailReason; continue; }
+
+                ok++;
+                attempts += res.Attempts;
+                cur = res.Layout;
+
+                PlacedRoom safe = null;
+                foreach (var r in cur.Rooms)
+                    if (r.Template.IsSafeRoom) { safe = r; break; }
+                if (safe == null) continue;
+
+                var dist = HouseGenerator.Distances(cur, cfg, safe);
+                foreach (var r in cur.Rooms)
+                {
+                    if (r.Template.MinDistanceFromSafeRoom <= 0) continue;
+                    int d;
+                    if (!dist.TryGetValue(r.Template.Id, out d)) continue;
+                    if (!closest.ContainsKey(r.Template.Id) || d < closest[r.Template.Id])
+                        closest[r.Template.Id] = d;
+                }
+            }
+
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[House] stress test: " + ok + "/200 valid, avg "
+                + (ok > 0 ? (attempts / (double)ok).ToString("0.0") : "-") + " attempts");
+            if (failed > 0) sb.AppendLine("last failure: " + lastFail);
+
+            foreach (var kv in closest)
+            {
+                var t = TemplateById(templates, kv.Key);
+                sb.AppendLine(kv.Key + ": closest to safe room over 200 shuffles = " + kv.Value
+                    + ", wants at least " + (t != null ? t.MinDistanceFromSafeRoom : 0));
+            }
+            Debug.Log(sb.ToString());
+        }
+
+        static RoomTemplate TemplateById(List<RoomTemplate> list, string id)
+        {
+            foreach (var t in list)
+                if (t.Id == id) return t;
+            return null;
+        }
+
         [ContextMenu("Force Shuffle")]
         public void Shuffle()
         {
@@ -156,6 +216,8 @@ namespace TrustNoOne.Shuffle
                 if (logShuffles) Debug.LogWarning("[House] shuffle failed, keeping old layout: " + res.FailReason);
                 return;
             }
+
+            GameManager.Instance.setSoundRepresentsTruth(!GameManager.Instance.getSoundRepresentsTruth());
 
             Apply(res.Layout);
             lastShuffleTime = Time.time;

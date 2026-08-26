@@ -16,6 +16,7 @@ public class OpenCloseAnimationInteraction : MonoBehaviour, InteractionInterface
     [SerializeField] 
     private EventReference doorSoundEvent;
 
+
     private void Start()
     {
         animator = GetComponent<Animator>();

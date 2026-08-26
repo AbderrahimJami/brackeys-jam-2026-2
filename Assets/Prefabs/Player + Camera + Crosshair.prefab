@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1953
+  m_VersionIndex: 1962
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2504,9 +2504,9 @@ MonoBehaviour:
   cameraSensitivity: 1000
   idle:
     frequency: 3
-    amplitude: 0.01
+    amplitude: 0.0009
   walking:
-    frequency: 1
+    frequency: 4
     amplitude: 0.1
   maxInteractionDist: 2
   crosshair: {fileID: 9203590041450299967}

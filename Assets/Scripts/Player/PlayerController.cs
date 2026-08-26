@@ -24,21 +24,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float deceleration = 20f;
 
-    //[SerializeField]
-    //float fixedJumpForce = 15f;
-
-    //[SerializeField]
-    //float gravityWhenJumping = 1f;
-
-    //[SerializeField]
-    //float gravityWhenFalling = 1f;
-
-    //[SerializeField]
-    //float groundCheckDist = 0.7f;
-
-    //[SerializeField]
-    //LayerMask whatCanUserStandOn;
-
 
     [Header("Camera Setting")]
     [SerializeField]
@@ -58,10 +43,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     HeadBobbingProfiles walking;
 
-    HeadBobbingProfiles activeProfile;
-    //[SerializeField]
-    //HeadBobbingProfiles running;
-
 
 
     [Header("Interaction Settings")]
@@ -73,27 +54,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask interactableMask;
 
-    bool doJump = false;
-    bool sprinting = false;
 
-
-
-
+    HeadBobbingProfiles activeProfile;
     Vector3 userInput = Vector3.zero;
 
     Rigidbody rb;
     CapsuleCollider collider;
-
     Inventory inventory;
-
     Transform oriantationTransform;
-
-
     Camera mainCamera;
-
     Vector3 mainCameraOriginalPosition;
 
     bool startHeadBobbing = false;
+
+
+    float xRotation;
+    float yRotation;
+    float headBobbingTimer = 0f;
 
 
     public Inventory getInventory()
@@ -155,13 +132,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  
 
-    // Update is called once per frame
-
-    float xRotation;
-    float yRotation;
-    float headBobbingTimer = 0f;
 
     void lookAround()
     {
@@ -176,16 +147,16 @@ public class PlayerController : MonoBehaviour
         if (startHeadBobbing)
         {
             headBobbingTimer += Time.deltaTime;
+            
             float val = activeProfile.amplitude * Mathf.Sin(headBobbingTimer * activeProfile.frequency);
-            //xRotation += val;
+
             Vector3 tempPosition = mainCamera.transform.localPosition;
             tempPosition.y = mainCameraOriginalPosition.y + val; 
+
             mainCamera.transform.localPosition = tempPosition;
         }
 
 
-        //newPlayerRotation = Vector3.up * mouseX;
-        //transform.Rotate(Vector3.up * mouseX);
         mainCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         oriantationTransform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
@@ -205,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
         userInput.y = 0f;
 
-
+        // handle camera + player rotation
         lookAround();
 
         // handling interactions
