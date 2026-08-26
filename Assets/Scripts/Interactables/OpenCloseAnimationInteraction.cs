@@ -1,5 +1,8 @@
+using FMOD.Studio;
+using FMODUnity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,12 +10,12 @@ public class OpenCloseAnimationInteraction : MonoBehaviour, InteractionInterface
 {
     Animator animator;
 
-    [SerializeField]
+    [SerializeField] 
     string paramName = "isOpen";
     bool defaultValue = false;
+    [SerializeField] 
+    private EventReference doorSoundEvent;
 
-    [SerializeField]
-    public AudioSource soundToPlayOnInterect = null;
 
     private void Start()
     {
@@ -23,10 +26,15 @@ public class OpenCloseAnimationInteraction : MonoBehaviour, InteractionInterface
     {
         bool newState = !animator.GetBool(paramName);
         animator.SetBool(paramName, newState);
+        playSound();
+    }
 
-        if (soundToPlayOnInterect != null)
-        {
-            // Play audio
-        }
+    private void playSound()
+    {
+        RuntimeManager.StudioSystem.setParameterByName("isOpen", System.Convert.ToSingle(animator.GetBool(paramName)));
+        EventInstance instance = RuntimeManager.CreateInstance(doorSoundEvent);
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        instance.start();
+        instance.release();
     }
 }

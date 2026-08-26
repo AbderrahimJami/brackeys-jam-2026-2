@@ -495,6 +495,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationInteraction
   paramName: isOpen
+  doorSoundEvent:
+    Guid:
+      Data1: 1317363177
+      Data2: 1338003251
+      Data3: 2114742917
+      Data4: 1378121441
+    Path: event:/Door
   soundToPlayOnInterect: {fileID: 0}
 --- !u!95 &126258953
 Animator:
@@ -815,6 +822,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac1112f0e64bd754faa5b20b010f3b17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 313875635}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac1112f0e64bd754faa5b20b010f3b17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 313875638}
   m_SourcePrefab: {fileID: 100100000, guid: ac1112f0e64bd754faa5b20b010f3b17, type: 3}
 --- !u!1 &313875634 stripped
 GameObject:
@@ -855,6 +865,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.41487488, y: 0.61874163, z: 0.3116169}
   m_Center: {x: 0.0013237745, y: 1.17061, z: 0.0052957535}
+--- !u!114 &313875638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313875634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -385691108
+      Data2: 1282735297
+      Data3: -616896609
+      Data4: -169853505
+    Path: event:/Candle
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &336755559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,8 +1275,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -1412,8 +1453,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -2740,8 +2781,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -4925,8 +4966,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -5725,6 +5766,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 1971
       objectReference: {fileID: 0}
+    - target: {fileID: 2058675208171055317, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: m_VersionIndex
+      value: 1971
+      objectReference: {fileID: 0}
     - target: {fileID: 2719866817392067522, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5732,6 +5777,50 @@ PrefabInstance:
     - target: {fileID: 4038299555659648179, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_Name
       value: Player + Camera + Crosshair
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: breatheVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: breatheEvent.Path
+      value: event:/Breathing
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: footstepEvent.Path
+      value: event:/Footsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: breatheEvent.Guid.Data1
+      value: -1069945618
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: breatheEvent.Guid.Data2
+      value: 1214134328
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: breatheEvent.Guid.Data3
+      value: -1160467291
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: breatheEvent.Guid.Data4
+      value: 919329094
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: footstepEvent.Guid.Data1
+      value: -918312571
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: footstepEvent.Guid.Data2
+      value: 1276226198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: footstepEvent.Guid.Data3
+      value: -1511114055
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694668511739289742, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: footstepEvent.Guid.Data4
+      value: 1980402220
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
