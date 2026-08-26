@@ -8,6 +8,7 @@ namespace TrustNoOne.Shuffle
         {
             if (EndgameController.Instance != null)
                 EndgameController.Instance.AddKey();
+
             gameObject.SetActive(false);
         }
     }

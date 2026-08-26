@@ -60,6 +60,7 @@ namespace TrustNoOne.Shuffle
             t.DoorLocks[1] = lockEast;
             t.DoorLocks[2] = lockSouth;
             t.DoorLocks[3] = lockWest;
+
             t.MinKeys = minKeys;
             t.MinDistanceFromPlayer = minDistanceFromPlayer;
             t.MinDistanceFromSafeRoom = minDistanceFromSafeRoom;

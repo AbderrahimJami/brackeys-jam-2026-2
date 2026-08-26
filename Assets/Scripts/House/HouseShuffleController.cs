@@ -217,6 +217,8 @@ namespace TrustNoOne.Shuffle
                 return;
             }
 
+            GameManager.Instance.setSoundRepresentsTruth(!GameManager.Instance.getSoundRepresentsTruth());
+
             Apply(res.Layout);
             lastShuffleTime = Time.time;
             if (logShuffles) Debug.Log("[House] shuffled in " + res.Attempts + " attempts");

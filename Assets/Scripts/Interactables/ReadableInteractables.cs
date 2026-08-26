@@ -2,19 +2,10 @@ using UnityEngine;
 
 public class ReadableInteractables : MonoBehaviour, InteractionInterface
 {
-    [SerializeField]
-    public AudioClip soundToPlayOnInterect = null;
-
     public void Interact(GameObject interactor)
     {
-        Inventory inventory = PlayerController.Instance.getInventory();
-        inventory.addInventory(interactor);
-        gameObject.SetActive(false);
-
-        if (soundToPlayOnInterect != null)
-        {
-            // Play audio
-        }
+        GameManager.Instance.setSoundRepresentsTruth(!GameManager.Instance.getSoundRepresentsTruth());
     }
+
 }
 

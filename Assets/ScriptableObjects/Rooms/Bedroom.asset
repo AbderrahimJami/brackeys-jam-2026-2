@@ -25,7 +25,7 @@ MonoBehaviour:
   minDistanceFromPlayer: 0
   minDistanceFromSafeRoom: 0
   isSafeRoom: 0
-  forbiddenNeighbours: 03000000
+  forbiddenNeighbours: 
   anchored: 0
   fixedCell: {x: 0, y: 0}
   allowRotation: 1

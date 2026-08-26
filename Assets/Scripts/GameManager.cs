@@ -1,3 +1,4 @@
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 
@@ -12,8 +13,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI keyScoreText;
 
+    [SerializeField]
+    TextMeshProUGUI truthText;
+
+
+    bool soundRepresentsTruth = true;
+
     private int keysFound = 0;
 
+
+    public void setSoundRepresentsTruth(bool newValue)
+    {
+        soundRepresentsTruth = newValue;
+    }
+
+    public bool getSoundRepresentsTruth()
+    {
+        return soundRepresentsTruth;
+    }
 
     public void setKeysFound(int count)
     {
@@ -38,8 +55,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    private void Update()
     {
-        
+        truthText.text = "Truth = " + soundRepresentsTruth;
+
     }
 }
