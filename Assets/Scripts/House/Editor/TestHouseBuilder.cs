@@ -62,6 +62,8 @@ namespace TrustNoOne.Shuffle
             ctrl.gridHeight = 3;
             ctrl.cellSize = CellSize;
 
+            houseGo.AddComponent<HouseShuffleFX>();
+
             for (int i = 0; i < specs.Length; i++)
                 BuildRoom(specs[i], houseGo.transform);
 
@@ -112,6 +114,15 @@ namespace TrustNoOne.Shuffle
             floor.transform.SetParent(room.transform, false);
             floor.transform.localPosition = new Vector3(0f, -0.15f, 0f);
             floor.transform.localScale = new Vector3(CellSize, 0.3f, CellSize);
+
+            // a light per room so the shuffle flicker has something to hit
+            var lightGo = new GameObject("RoomLight");
+            lightGo.transform.SetParent(room.transform, false);
+            lightGo.transform.localPosition = new Vector3(0f, WallHeight - 0.4f, 0f);
+            var pointLight = lightGo.AddComponent<Light>();
+            pointLight.type = LightType.Point;
+            pointLight.range = CellSize * 1.2f;
+            pointLight.intensity = 2f;
 
             bool[] hasDoor = { sp.n, sp.e, sp.s, sp.w };
             for (int d = 0; d < 4; d++)
