@@ -20,15 +20,21 @@ namespace TrustNoOne.Shuffle
             public bool anchored;
             public int fx, fy;
             public int minKeys;
+            public int distPlayer;
+            public int distSafe;
+            public bool isSafe;
             public int[] locks;
             public RoomType[] forbidden;
         }
 
-        static Spec S(string name, RoomType type, string doors, bool anchored = false, int fx = 0, int fy = 0, RoomType[] forbidden = null, int minKeys = 0, int[] locks = null)
+        static Spec S(string name, RoomType type, string doors, bool anchored = false, int fx = 0, int fy = 0, RoomType[] forbidden = null, int minKeys = 0, int[] locks = null, int distPlayer = 0, int distSafe = 0, bool isSafe = false)
         {
             var sp = new Spec();
             sp.name = name; sp.type = type; sp.anchored = anchored; sp.fx = fx; sp.fy = fy;
             sp.minKeys = minKeys;
+            sp.distPlayer = distPlayer;
+            sp.distSafe = distSafe;
+            sp.isSafe = isSafe;
             sp.locks = locks == null ? new int[4] : locks;
             sp.forbidden = forbidden == null ? new RoomType[0] : forbidden;
             sp.n = doors.Contains("N"); sp.e = doors.Contains("E");
@@ -41,13 +47,14 @@ namespace TrustNoOne.Shuffle
         {
             var specs = new Spec[]
             {
-                S("SafeRoom",   RoomType.SafeRoom,   "NESW", true, 1, 1),
+                S("SafeRoom",   RoomType.SafeRoom,   "NESW", true, 1, 1, null, 0, null, 0, 0, true),
                 S("Hallway_A",  RoomType.Hallway,    "NESW"),
                 S("Hallway_B",  RoomType.Hallway,    "NESW"),
                 S("Kitchen",    RoomType.Kitchen,    "NE",   false, 0, 0, new[] { RoomType.Bathroom, RoomType.Bedroom }),
                 S("LivingRoom", RoomType.LivingRoom, "NEW"),
                 S("Bedroom",    RoomType.Bedroom,    "SE",   false, 0, 0, new[] { RoomType.Kitchen }),
-                S("Bathroom",   RoomType.Bathroom,   "S",    false, 0, 0, new[] { RoomType.Kitchen }),
+                // pretend this holds a key, keep it away from the safe room
+                S("Bathroom",   RoomType.Bathroom,   "S",    false, 0, 0, new[] { RoomType.Kitchen }, 0, null, 0, 2),
                 // vault room, both doors need 2 keys
                 S("Study",      RoomType.Study,      "NW",   false, 0, 0, null, 2, new[] { 2, 0, 0, 2 }),
             };
@@ -63,9 +70,13 @@ namespace TrustNoOne.Shuffle
             ctrl.cellSize = CellSize;
 
             houseGo.AddComponent<HouseShuffleFX>();
+            var endgame = houseGo.AddComponent<EndgameController>();
 
             for (int i = 0; i < specs.Length; i++)
                 BuildRoom(specs[i], houseGo.transform);
+
+            endgame.exitDoors = BuildExitDoors(houseGo.transform.Find("SafeRoom"));
+            BuildKeys(houseGo.transform, new[] { "Kitchen", "Bedroom", "LivingRoom" });
 
             AssetDatabase.SaveAssets();
             Selection.activeGameObject = houseGo;
@@ -94,6 +105,9 @@ namespace TrustNoOne.Shuffle
             def.lockSouth = sp.locks[2];
             def.lockWest = sp.locks[3];
             def.minKeys = sp.minKeys;
+            def.minDistanceFromPlayer = sp.distPlayer;
+            def.minDistanceFromSafeRoom = sp.distSafe;
+            def.isSafeRoom = sp.isSafe;
             foreach (var f in sp.forbidden) def.forbiddenNeighbours.Add(f);
             AssetDatabase.CreateAsset(def, DefFolder + "/" + sp.name + ".asset");
 
@@ -149,6 +163,55 @@ namespace TrustNoOne.Shuffle
                     inst.lockedDoors[d] = locked;
                     locked.SetActive(false);
                 }
+            }
+        }
+
+        // three doors on the safe room's north wall. only one is the real way out
+        static ExitDoor[] BuildExitDoors(Transform safeRoom)
+        {
+            var doors = new ExitDoor[3];
+            if (safeRoom == null)
+            {
+                Debug.LogError("[House] no SafeRoom, skipped exit doors");
+                return doors;
+            }
+
+            int layer = LayerMask.NameToLayer("Interactable");
+            float spacing = CellSize * 0.28f;
+
+            for (int i = 0; i < 3; i++)
+            {
+                var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                go.name = "ExitDoor_" + i;
+                go.transform.SetParent(safeRoom, false);
+                go.transform.localPosition = new Vector3((i - 1) * spacing, 1.1f, CellSize * 0.5f - 0.6f);
+                go.transform.localScale = new Vector3(1.6f, 2.2f, 0.4f);
+                if (layer >= 0) go.layer = layer;
+
+                var door = go.AddComponent<ExitDoor>();
+                door.index = i;
+                doors[i] = door;
+            }
+            return doors;
+        }
+
+        static void BuildKeys(Transform house, string[] roomNames)
+        {
+            int layer = LayerMask.NameToLayer("Interactable");
+
+            foreach (var name in roomNames)
+            {
+                var room = house.Find(name);
+                if (room == null) { Debug.LogWarning("[House] no room called " + name + ", skipped its key"); continue; }
+
+                var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                go.name = "Key_" + name;
+                go.transform.SetParent(room, false);
+                go.transform.localPosition = new Vector3(0f, 0.6f, 0f);
+                go.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                if (layer >= 0) go.layer = layer;
+
+                go.AddComponent<KeyPickup>();
             }
         }
 

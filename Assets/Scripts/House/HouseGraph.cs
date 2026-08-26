@@ -40,6 +40,13 @@ namespace TrustNoOne.Shuffle
         // room isn't expected to be reachable until the player has this many keys
         public int MinKeys;
 
+        // 0 = no constraint. otherwise the room must be at least this many doors away
+        public int MinDistanceFromPlayer;
+        public int MinDistanceFromSafeRoom;
+
+        // marks the hub the safe-room distance is measured from
+        public bool IsSafeRoom;
+
         public HashSet<string> ForbiddenNeighbours = new HashSet<string>();
 
         public bool Anchored;          // never moves (safe room)
@@ -301,6 +308,36 @@ namespace TrustNoOne.Shuffle
             }
         }
 
+        // door distance from one room to every room reachable with the current keys
+        public static Dictionary<string, int> Distances(HouseLayout layout, ShuffleConfig cfg, PlacedRoom start)
+        {
+            var dist = new Dictionary<string, int>();
+            if (start == null) return dist;
+
+            var queue = new Queue<PlacedRoom>();
+            queue.Enqueue(start);
+            dist[start.Template.Id] = 0;
+
+            while (queue.Count > 0)
+            {
+                var cur = queue.Dequeue();
+                for (int d = 0; d < 4; d++)
+                {
+                    int lockLevel = layout.ConnectionLock(cur, (Dir)d);
+                    // no doorway, or locked beyond what the player can open
+                    if (lockLevel < 0 || lockLevel > cfg.PlayerKeys) continue;
+
+                    int dx, dy; DirUtil.Offset((Dir)d, out dx, out dy);
+                    var n = layout.At(cur.X + dx, cur.Y + dy);
+                    if (n == null || dist.ContainsKey(n.Template.Id)) continue;
+
+                    dist[n.Template.Id] = dist[cur.Template.Id] + 1;
+                    queue.Enqueue(n);
+                }
+            }
+            return dist;
+        }
+
         public static bool Validate(HouseLayout layout, ShuffleConfig cfg, string playerRoomId, out string reason)
         {
             reason = null;
@@ -327,28 +364,7 @@ namespace TrustNoOne.Shuffle
             if (start == null) start = layout.Rooms.FirstOrDefault();
             if (start == null) { reason = "empty house"; return false; }
 
-            var seen = new HashSet<string>();
-            var queue = new Queue<PlacedRoom>();
-            queue.Enqueue(start);
-            seen.Add(start.Template.Id);
-
-            while (queue.Count > 0)
-            {
-                var cur = queue.Dequeue();
-                for (int d = 0; d < 4; d++)
-                {
-                    int lockLevel = layout.ConnectionLock(cur, (Dir)d);
-                    // no doorway, or locked beyond what the player can open
-                    if (lockLevel < 0 || lockLevel > cfg.PlayerKeys) continue;
-                    int dx, dy; DirUtil.Offset((Dir)d, out dx, out dy);
-                    var n = layout.At(cur.X + dx, cur.Y + dy);
-                    if (n != null && !seen.Contains(n.Template.Id))
-                    {
-                        seen.Add(n.Template.Id);
-                        queue.Enqueue(n);
-                    }
-                }
-            }
+            var fromPlayer = Distances(layout, cfg, start);
 
             foreach (var r in layout.Rooms)
             {
@@ -356,10 +372,46 @@ namespace TrustNoOne.Shuffle
                 if (r.Template.MinKeys > cfg.PlayerKeys) continue;
 
                 bool mustReach = cfg.RequireAllRoomsReachable || r.Template.Required;
-                if (mustReach && !seen.Contains(r.Template.Id))
+                if (mustReach && !fromPlayer.ContainsKey(r.Template.Id))
                 {
                     reason = r.Template.Type + " unreachable with " + cfg.PlayerKeys + " keys";
                     return false;
+                }
+            }
+
+            // 3. keep key rooms away from the player
+            foreach (var r in layout.Rooms)
+            {
+                int min = r.Template.MinDistanceFromPlayer;
+                if (min <= 0) continue;
+                int d;
+                if (!fromPlayer.TryGetValue(r.Template.Id, out d)) continue;  // not reachable yet, no constraint
+                if (d < min)
+                {
+                    reason = r.Template.Type + " only " + d + " doors from player, wants " + min;
+                    return false;
+                }
+            }
+
+            // 4. and away from the safe room
+            PlacedRoom safe = null;
+            foreach (var r in layout.Rooms)
+                if (r.Template.IsSafeRoom) { safe = r; break; }
+
+            if (safe != null)
+            {
+                var fromSafe = Distances(layout, cfg, safe);
+                foreach (var r in layout.Rooms)
+                {
+                    int min = r.Template.MinDistanceFromSafeRoom;
+                    if (min <= 0) continue;
+                    int d;
+                    if (!fromSafe.TryGetValue(r.Template.Id, out d)) continue;
+                    if (d < min)
+                    {
+                        reason = r.Template.Type + " only " + d + " doors from safe room, wants " + min;
+                        return false;
+                    }
                 }
             }
 

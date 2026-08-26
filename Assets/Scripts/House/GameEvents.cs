@@ -16,6 +16,9 @@ public static class GameEvents
 {
     public static Action<InteractionKind> Interacted;
     public static Action HouseShuffled;   // vfx/audio hook onto this
+    public static Action<int> KeysChanged;    // new key total
+    public static Action<int> ExitRefused;    // how many keys still missing
+    public static Action<bool> RunEnded;      // true = escaped
 
     public static void Interact(InteractionKind kind)
     {
