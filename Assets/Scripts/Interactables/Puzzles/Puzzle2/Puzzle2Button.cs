@@ -50,7 +50,7 @@ namespace Interactables.Puzzles.Puzzle2
 
         private void Teleport()
         {
-            PlayerController.Instance.Teleport(punishmentLocation.position);
+            PlayerController.Instance.TeleportToSafeRoom();
         }
 
         public void SetSolved()
