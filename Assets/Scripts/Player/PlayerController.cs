@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using TrustNoOne.Shuffle;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -78,11 +79,22 @@ public class PlayerController : MonoBehaviour
         return inventory;
     }
 
-    public void Teleport(Vector3 position)
+    public void TeleportToSafeRoom()
     {
-        rb.position = position;
-        transform.position = position;
-        rb.linearVelocity = Vector3.zero;
+        RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+
+            if (rooms[i].definition.roomType == RoomType.SafeRoom)
+            {
+                Vector3 newPos = rooms[i].gameObject.transform.position;
+                newPos.y += 2f;
+                transform.position = newPos;
+                return;
+            }
+
+        }
     }
 
     private void Awake()
@@ -114,8 +126,8 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-    }
 
+    }
 
     void handleInteractions()
     {
@@ -164,6 +176,7 @@ public class PlayerController : MonoBehaviour
         mainCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         oriantationTransform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
+
     }
 
     void Update()
@@ -189,6 +202,11 @@ public class PlayerController : MonoBehaviour
 
         // head bobbing
         handleHeadBobbing();
+
+
+        // teleportation to saferoom
+        if (Input.GetKeyDown(KeyCode.P))
+            TeleportToSafeRoom();
 
     }
 
