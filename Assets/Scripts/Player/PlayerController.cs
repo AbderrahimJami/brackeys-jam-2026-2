@@ -78,6 +78,13 @@ public class PlayerController : MonoBehaviour
         return inventory;
     }
 
+    public void Teleport(Vector3 position)
+    {
+        rb.position = position;
+        transform.position = position;
+        rb.linearVelocity = Vector3.zero;
+    }
+
     private void Awake()
     {
         Instance = this;
