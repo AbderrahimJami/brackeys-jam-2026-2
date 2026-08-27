@@ -12,6 +12,7 @@ namespace Interactables
         [SerializeField] private Quaternion watermelonSliceRot;
         [SerializeField] private Quaternion forkRot;
         [SerializeField] private Quaternion iceCreamRot;
+        [SerializeField] private float rotationTolerance = 1f;
 
         private void Start()
         {
@@ -26,20 +27,23 @@ namespace Interactables
 
         private void EvaluatePuzzleState()
         {
-            if (watermelonSliceRot == watermelonSlice.transform.rotation &&
-                iceCreamRot == iceCream.transform.rotation && forkRot == fork.transform.rotation)
+            if (IsAtTarget(watermelonSliceRot, watermelonSlice.transform) &&
+                IsAtTarget(iceCreamRot, iceCream.transform) && IsAtTarget(forkRot, fork.transform))
             {
                 Debug.Log("FOUND THE COMBINATION");
                 _meshRenderer.enabled = true;
                 _collider.enabled = true;
-                
+
             }
 
             Debug.Log(
-                $"Watermelon rot is {watermelonSlice.transform.rotation.eulerAngles.ToString()} " +
-                $"Ice Cream is: {iceCream.transform.rotation.eulerAngles.ToString()} " +
-                $"and fork is {fork.transform.rotation.eulerAngles.ToString()}");
+                $"Watermelon local rot is {watermelonSlice.transform.localRotation.eulerAngles.ToString()} " +
+                $"Ice Cream is: {iceCream.transform.localRotation.eulerAngles.ToString()} " +
+                $"and fork is {fork.transform.localRotation.eulerAngles.ToString()}");
         }
+
+        private bool IsAtTarget(Quaternion target, Transform t) =>
+            Quaternion.Angle(target, t.localRotation) < rotationTolerance;
 
 
         public void Interact(GameObject interactor)
