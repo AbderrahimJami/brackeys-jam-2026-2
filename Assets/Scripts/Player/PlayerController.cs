@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxInteractionDist, interactableMask))
         {
-            InteractionInterface i = hit.transform.gameObject.GetComponent<InteractionInterface>();
+            InteractionInterface i = hit.transform.gameObject.GetComponentInParent<InteractionInterface>();
             crosshair.color = i != null ? Color.red : Color.black;
 
             if (i != null && Input.GetKeyDown(KeyCode.E))
