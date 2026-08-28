@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &30089727
 Light:
   m_ObjectHideFlags: 0
@@ -1428,6 +1428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 52226876273471970, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 452559887571991013, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1468,6 +1472,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 733823227857098018, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530867682730361680, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757636159543406297, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887295370864386831, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2144172923551449337, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239060813680805460, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290256903873282541, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821621240411839251, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228095417296827003, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379482219944365667, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938670741339756929, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119408457274938226, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379548231905688097, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4578494190623411300, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: panel
       value: 
@@ -1484,6 +1540,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 5565688749170150110, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612532048010270673, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653535164020074457, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7224266513847031818, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: panel
       value: 
@@ -1496,6 +1564,18 @@ PrefabInstance:
       propertyPath: headingLabel
       value: 
       objectReference: {fileID: 896711034}
+    - target: {fileID: 7404580642034766517, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958512634909068345, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306594635664715482, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4980,7 +5060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1847991006
 MonoBehaviour:
   m_ObjectHideFlags: 0
