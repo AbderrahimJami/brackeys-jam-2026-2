@@ -59,6 +59,8 @@ namespace TrustNoOne.Shuffle
             if (!res.Success)
                 Debug.LogError("[House] initial layout failed: " + res.FailReason + " - check door sockets and forbidden lists");
             Apply(res.Layout);
+
+            PlayerController.Instance.TeleportToSafeRoom();
         }
 
         void CheckIds()

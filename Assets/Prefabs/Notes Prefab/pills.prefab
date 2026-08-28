@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &481218051277999366
+--- !u!1 &7676226290404787517
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3387757555078846549}
-  - component: {fileID: 8958500113395419282}
-  - component: {fileID: 2402141135618913965}
-  - component: {fileID: 8024552323496908072}
-  - component: {fileID: 5623856837966317833}
-  - component: {fileID: 1159696070158843330}
+  - component: {fileID: 4012748573923592518}
+  - component: {fileID: 1730632507453415752}
+  - component: {fileID: 1561346111080046094}
+  - component: {fileID: 4173187503711047416}
+  - component: {fileID: 6777200150466702080}
+  - component: {fileID: 6689845623948485194}
   m_Layer: 7
-  m_Name: Paper1
+  m_Name: pills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3387757555078846549
+--- !u!4 &4012748573923592518
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481218051277999366}
+  m_GameObject: {fileID: 7676226290404787517}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
-  m_LocalPosition: {x: 0.3444213, y: 0.00019657295, z: -0.022372449}
+  m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 1.77, y: 9.49, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
---- !u!33 &8958500113395419282
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1730632507453415752
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481218051277999366}
-  m_Mesh: {fileID: 4579454407841743219, guid: fb57703fbccba4946936aa435e758ce8, type: 3}
---- !u!23 &2402141135618913965
+  m_GameObject: {fileID: 7676226290404787517}
+  m_Mesh: {fileID: -7196802604745430461, guid: aba55afb017a2734c9eb182b88f27bf7, type: 3}
+--- !u!23 &1561346111080046094
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481218051277999366}
+  m_GameObject: {fileID: 7676226290404787517}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e56669c27e410f54fab90296435eee89, type: 2}
+  - {fileID: 2100000, guid: 1fbdf699697236445a83a5ff570fa2d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,13 +93,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8024552323496908072
+--- !u!64 &4173187503711047416
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481218051277999366}
+  m_GameObject: {fileID: 7676226290404787517}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -114,45 +114,45 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4579454407841743219, guid: fb57703fbccba4946936aa435e758ce8, type: 3}
---- !u!114 &5623856837966317833
+  m_Mesh: {fileID: -7196802604745430461, guid: aba55afb017a2734c9eb182b88f27bf7, type: 3}
+--- !u!114 &6777200150466702080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481218051277999366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f87f825262272d45ae75a5833b78681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReadableInteractables
-  text: "- Don\u2019t forget to take your pills at 10:00!\r\n- Don\u2019t forget
-    to hydrate once every hour!\r\n- See you next week. Love you grandpa! - Sarah\r\n-
-    Did you already take your meal from the freezer? It needs to defrost.\r\n- Bring
-    back books to the library before the 24th this month (\u201CJohn and His Men\u201D
-    and \u201CBrewing Techniques\u201D)\r\n- Trash should be out on Thursdays!\r\n-
-    Angela will visit and do your laundry every Saturday.\r\n- Check-up appointment
-    with neurologist on the 28th this month at 9:15. Angela will come get you at
-    8:30.\r\n- Angela will bring you to the hospital the 25th at 11:20 for your epidural
-    injection."
-  heading: 
-  rereadable: 1
---- !u!114 &1159696070158843330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481218051277999366}
+  m_GameObject: {fileID: 7676226290404787517}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84f26184d341dfe4f8cd043c0ef97440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteReader
-  panel: {fileID: 0}
-  headingLabel: {fileID: 0}
-  bodyLabel: {fileID: 0}
+  holdPoint: {fileID: 0}
+  moveTime: 0.3
+  dimOverlay: {fileID: 0}
   closeKey: 101
   altCloseKey: 27
   minOpenTime: 0.25
+  readingLight: {fileID: 0}
+--- !u!114 &6689845623948485194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676226290404787517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f87f825262272d45ae75a5833b78681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReadableInteractables
+  heldRotation: {x: -180, y: 0, z: 180}
+  heldScale: 0
+  rereadable: 1
+  manSayEvent:
+    Guid:
+      Data1: 2102836946
+      Data2: 1321333318
+      Data3: -2138760057
+      Data4: -1659994095
+    Path: event:/ManCough
