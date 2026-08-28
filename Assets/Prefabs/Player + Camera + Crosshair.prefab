@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2055
+  m_VersionIndex: 2064
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2796,6 +2796,19 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 128
+  storedSequencialMessages:
+  - Where am I?
+  - Find all keys
+  - Take your pills at 10:00!
+  - 'Sarah '
+  - Love you grandpa!
+  - hydrate every hour
+  - take your meal from the freezer
+  - needs to defrost
+  - Bring back books to the library
+  - Trash should be out on Thursdays!
+  - Angela will visit
+  - Check-up appointment with neurologist on the 28th this month at 9:15.
 --- !u!114 &7694668511739289742
 MonoBehaviour:
   m_ObjectHideFlags: 0

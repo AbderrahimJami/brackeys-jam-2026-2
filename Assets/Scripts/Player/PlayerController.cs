@@ -1,9 +1,8 @@
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using TMPro;
 using TrustNoOne.Shuffle;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 
@@ -56,6 +55,13 @@ public class PlayerController : MonoBehaviour
     LayerMask interactableMask;
 
 
+    [Header("Sequencial Messages")]
+    [SerializeField]
+    List<string> storedSequencialMessages = new List<string>();
+
+    int currentSequencialMessageIndex = 0;
+
+
     HeadBobbingProfiles activeProfile;
     Vector3 userInput = Vector3.zero;
 
@@ -82,6 +88,7 @@ public class PlayerController : MonoBehaviour
     public void TeleportToSafeRoom()
     {
         RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
+
 
         for (int i = 0; i < rooms.Length; i++)
         {
@@ -252,6 +259,32 @@ public class PlayerController : MonoBehaviour
         velocity.y = rb.linearVelocity.y;
         rb.linearVelocity = velocity;
 
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (currentSequencialMessageIndex >= storedSequencialMessages.Count) return;
+
+        if (other.gameObject.TryGetComponent<RoomInstance>(out RoomInstance roomInstance))
+        {
+            SequencialMessage[] messages = roomInstance.gameObject.GetComponentsInChildren<SequencialMessage>();
+
+            for (int i = 0; i < messages.Length; i++)
+            {
+                TextMeshPro textComponent = messages[i].gameObject.GetComponent<TextMeshPro>();
+
+                if (textComponent != null && textComponent.text.Trim() == "")
+                {
+                    textComponent.SetText(storedSequencialMessages[currentSequencialMessageIndex++]);
+                    if (currentSequencialMessageIndex >= storedSequencialMessages.Count) return;
+                }
+
+            }
+
+        }
 
     }
 }
