@@ -15,8 +15,8 @@ MonoBehaviour:
   roomType: 2
   doorNorth: 0
   doorEast: 1
-  doorSouth: 0
-  doorWest: 1
+  doorSouth: 1
+  doorWest: 0
   lockNorth: 0
   lockEast: 0
   lockSouth: 0
