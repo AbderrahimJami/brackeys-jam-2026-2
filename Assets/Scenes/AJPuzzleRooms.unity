@@ -14080,6 +14080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f87f825262272d45ae75a5833b78681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReadableInteractables
+  text: Take your pills at 10:00
+  heading: 
+  rereadable: 1
 --- !u!1 &1141478253
 GameObject:
   m_ObjectHideFlags: 0
@@ -27236,7 +27239,7 @@ PrefabInstance:
       objectReference: {fileID: 426240496}
     - target: {fileID: 2058675208171055317, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_VersionIndex
-      value: 1974
+      value: 2037
       objectReference: {fileID: 0}
     - target: {fileID: 2719866817392067522, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_Mesh
