@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &30089727
 Light:
   m_ObjectHideFlags: 0
@@ -2174,48 +2174,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5417356890416766417, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4653411694010752840, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8543690302545256024, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7877259203453386982, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7089105961283391103, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6806333925636734331, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3250689697967486715, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7170961310422130499, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1942940628759631452, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1725646319585552271, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8754930294820699335, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1822177248532672549, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2358180760702181607, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7978568355023734265, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3647747774628513710, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 7783480723122222972, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1226595499}
@@ -2258,6 +2216,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1551226121792649018, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1414135314}
+    - targetCorrespondingSourceObject: {fileID: 4653411694010752840, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8543690302545256024, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 4997769406177464103, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1564050395}
@@ -2279,12 +2243,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2790014245915049253, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1792165627}
+    - targetCorrespondingSourceObject: {fileID: 7877259203453386982, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 7089105961283391103, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6806333925636734331, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3250689697967486715, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 7614345782939153524, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1272971671}
     - targetCorrespondingSourceObject: {fileID: 3905373281198333482, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 725037582}
+    - targetCorrespondingSourceObject: {fileID: 7170961310422130499, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1942940628759631452, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 923305329859496238, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1072104219}
@@ -2297,12 +2279,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5440618935194891630, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1296410676}
-    - targetCorrespondingSourceObject: {fileID: 2369454458806396857, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 1725646319585552271, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 770555743}
-    - targetCorrespondingSourceObject: {fileID: 7062550615971113838, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8754930294820699335, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1943494280}
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 1177764901708425460, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1757799973}
@@ -2318,6 +2300,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9066381294123545005, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1194445317}
+    - targetCorrespondingSourceObject: {fileID: 2369454458806396857, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 770555743}
+    - targetCorrespondingSourceObject: {fileID: 7062550615971113838, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1943494280}
+    - targetCorrespondingSourceObject: {fileID: 1822177248532672549, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2358180760702181607, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 5256785565529667203, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 581184088}
@@ -2366,6 +2360,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 435047937198057395, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2120271651}
+    - targetCorrespondingSourceObject: {fileID: 7978568355023734265, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3647747774628513710, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 5008441637995887564, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 868597054}
@@ -3141,6 +3141,13 @@ MonoBehaviour:
   text: Take your pills at 10:00
   heading: 
   rereadable: 1
+  manSayEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1136657004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1656694657956791576, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
@@ -3841,8 +3848,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6151,8 +6158,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6685,8 +6692,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -6863,8 +6870,8 @@ Mesh:
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -7817,6 +7824,54 @@ PrefabInstance:
     - target: {fileID: 1075397571634504356, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: storedSequencialMessages.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[1]'
+      value: Take your pills at 10:00!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[2]'
+      value: Love you grandpa! Sarah
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[3]'
+      value: Find all keys
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[4]'
+      value: hydrate every hour
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[5]'
+      value: take your meal from the freezer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[6]'
+      value: needs to defrost
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[7]'
+      value: Bring back books to the library
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[8]'
+      value: Trash should be out on Thursdays!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[9]'
+      value: Angela will visit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[10]'
+      value: Check-up appointment with neurologist on the 28th this month at 9:15.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406124472981936035, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
+      propertyPath: 'storedSequencialMessages.Array.data[11]'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2058675208171055317, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_Mesh
