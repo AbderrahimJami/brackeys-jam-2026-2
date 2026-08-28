@@ -54,7 +54,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 618153541629222600}
   MinDistance: 1
   MaxDistance: 20
   Length: 1999
@@ -130,6 +131,32 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-6293476411431666595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/StepSide
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: StepSide
+  StudioPath: parameter:/StepSide
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4085376629
+    data2: 568516656
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Left
+  - Right
+  Exists: 1
 --- !u!114 &-5688226131203349692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +208,32 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-5289696534573306565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ManSay/CurrentlySaying
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlySaying
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2728311886
+    data2: 939103724
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
+  Exists: 1
 --- !u!114 &-5246681833745011352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +281,32 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Labels: []
+  Exists: 1
+--- !u!114 &-4763534457870678580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Breathing/CurrentlySaying
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlySaying
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2728311886
+    data2: 939103724
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
   Exists: 1
 --- !u!114 &-4582936317110433872
 MonoBehaviour:
@@ -422,7 +501,7 @@ MonoBehaviour:
   StudioPath: 
   Min: 0
   Max: 1
-  Default: 0.39999998
+  Default: 0.7
   ID:
     data1: 220069820
     data2: 1971765973
@@ -458,6 +537,7 @@ MonoBehaviour:
   - {fileID: 4022625229901092481}
   - {fileID: -2920648576735644405}
   - {fileID: -5246681833745011352}
+  - {fileID: -4763534457870678580}
   MinDistance: 1
   MaxDistance: 20
   Length: 17
@@ -560,6 +640,32 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-260678098591438053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CurrentlySaying
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlySaying
+  StudioPath: parameter:/CurrentlySaying
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2728311886
+    data2: 939103724
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,12 +708,15 @@ MonoBehaviour:
   - {fileID: -5639353577574402880}
   - {fileID: -2324661695578283554}
   - {fileID: -4582936317110433872}
+  - {fileID: -6293476411431666595}
+  - {fileID: -260678098591438053}
+  - {fileID: 4752026479634503592}
   MasterBanks:
   - {fileID: 2649819470846917877}
   StringsBanks:
   - {fileID: 8282329240067557869}
   cacheVersion: 131860
-  cacheTime: 639235277661986749
+  cacheTime: 639235342790770779
   SerializableEventsDict:
   - key: event:/Footsteps
     index: 0
@@ -657,9 +766,36 @@ MonoBehaviour:
   Parameters:
   - {fileID: -5688226131203349692}
   - {fileID: -1062936728900452106}
+  - {fileID: 2201672957639507950}
   MinDistance: 1
   MaxDistance: 20
-  Length: 568
+  Length: 648
+--- !u!114 &139122121089670982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ManSay/CurrentlyCoughing
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlyCoughing
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1155695364
+    data2: 2327534277
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
+  Exists: 1
 --- !u!114 &438453442053684848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,6 +824,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4458
+--- !u!114 &618153541629222600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Oillamp/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &704682416893885343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,10 +891,38 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -5289696534573306565}
+  - {fileID: 139122121089670982}
   MinDistance: 1
   MaxDistance: 20
-  Length: 2800
+  Length: 5050
+--- !u!114 &2201672957639507950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Footsteps/StepSide
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: StepSide
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4085376629
+    data2: 568516656
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Left
+  - Right
+  Exists: 1
 --- !u!114 &2649819470846917877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,7 +938,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639235254127754068
+  lastModified: 639235342790385522
   FileSizes: []
   Exists: 1
 --- !u!114 &2946261474234372472
@@ -774,6 +962,30 @@ MonoBehaviour:
     data1: 4140716043
     data2: 2715118197
   Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &3369533390150927480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Candle/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
   IsGlobal: 1
   Labels: []
   Exists: 1
@@ -877,10 +1089,61 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 3369533390150927480}
   MinDistance: 1
   MaxDistance: 20
   Length: 7999
+--- !u!114 &4752026479634503592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: parameter:/LightGain
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &5549489571428882591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ManCough/CurrentlySaying
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlySaying
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2728311886
+    data2: 939103724
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
+  Exists: 1
 --- !u!114 &5704446861714052142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,7 +1159,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639235156792922613
+  lastModified: 639235342790770779
   FileSizes: []
   Exists: 1
 --- !u!114 &6326062657903769101
@@ -968,7 +1231,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639235277661986749
+  lastModified: 639235342790253312
   FileSizes: []
   Exists: 1
 --- !u!114 &6572046687213999115
@@ -998,6 +1261,7 @@ MonoBehaviour:
   - {fileID: 3968994442219236384}
   - {fileID: 8748819689448242739}
   - {fileID: 8893653460934214883}
+  - {fileID: 5549489571428882591}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
@@ -1041,7 +1305,7 @@ MonoBehaviour:
   StudioPath: parameter:/VolumeMusic
   Min: 0
   Max: 1
-  Default: 0.39999998
+  Default: 0.7
   ID:
     data1: 220069820
     data2: 1971765973
@@ -1084,10 +1348,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639235254127764113
+  lastModified: 639235342790385522
   FileSizes:
   - Name: 
-    Value: 2082
+    Value: 2210
   Exists: 1
 --- !u!114 &8748819689448242739
 MonoBehaviour:
