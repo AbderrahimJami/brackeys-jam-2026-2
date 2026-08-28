@@ -579,7 +579,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8282329240067557869}
   cacheVersion: 131860
-  cacheTime: 639235238550422957
+  cacheTime: 639235405295279593
   SerializableEventsDict:
   - key: event:/Footsteps
     index: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639235228389441124
+  lastModified: 639235405295279593
   FileSizes: []
   Exists: 1
 --- !u!114 &2946261474234372472
@@ -866,7 +866,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639235156792922613
+  lastModified: 639235300043601583
   FileSizes: []
   Exists: 1
 --- !u!114 &6326062657903769101
@@ -938,7 +938,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639235238550422957
+  lastModified: 639235405295274567
   FileSizes: []
   Exists: 1
 --- !u!114 &6572046687213999115
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639235228389446158
+  lastModified: 639235405295279593
   FileSizes:
   - Name: 
     Value: 2044

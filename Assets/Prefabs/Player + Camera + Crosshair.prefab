@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 1566305807231630274}
   - component: {fileID: 1406124472981936035}
   - component: {fileID: 7694668511739289742}
+  - component: {fileID: 189560163801652275}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2628,7 +2629,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2049
+  m_VersionIndex: 2055
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2779,17 +2780,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df90d7a8e9cbdc04b8398cf6f71900fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  walkSpeed: 4
-  acceleration: 15
-  deceleration: 20
+  walkSpeed: 2
+  acceleration: 8
+  deceleration: 0.5
   camera: {fileID: 8552921653515151851}
-  cameraSensitivity: 1000
+  cameraSensitivity: 700
   idle:
-    frequency: 3
-    amplitude: 0.0009
+    frequency: 2
+    amplitude: 0.005
   walking:
-    frequency: 4
-    amplitude: 0.1
+    frequency: 10
+    amplitude: 0.03
   maxInteractionDist: 2
   crosshair: {fileID: 9203590041450299967}
   interactableMask:
@@ -2817,20 +2818,51 @@ MonoBehaviour:
     Path: event:/Footsteps
   breatheEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1069945618
+      Data2: 1214134328
+      Data3: -1160467291
+      Data4: 919329094
+    Path: event:/Breathing
   raycastDistance: 1.2
   groundLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  stepInterval: 0.5
+  stepInterval: 0.65
   minSpeedToStep: 0.1
   distance: 0.1
   breatheInterval: 1.5
   breatheVolume: 0.7
+--- !u!114 &189560163801652275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111244557938163272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2102836946
+      Data2: 1321333318
+      Data3: -2138760057
+      Data4: -1659994095
+    Path: event:/ManCough
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3410178869146702380
 GameObject:
   m_ObjectHideFlags: 0
