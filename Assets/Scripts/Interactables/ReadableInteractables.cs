@@ -1,4 +1,6 @@
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 // a note, letter or scrap of paper the player can read.
 // needs a collider on the Interactable layer
@@ -15,6 +17,9 @@ public class ReadableInteractables : MonoBehaviour, InteractionInterface
 
     public bool HasBeenRead { get; private set; }
 
+    [Header("FMOD")]
+    [SerializeField] private EventReference manSayEvent;
+
     public void Interact(GameObject interactor)
     {
         if (HasBeenRead && !rereadable) return;
@@ -25,7 +30,17 @@ public class ReadableInteractables : MonoBehaviour, InteractionInterface
             return;
         }
 
+        PlayManSay();
+
         HasBeenRead = true;
         NoteReader.Instance.Show(this);
+    }
+    void PlayManSay()
+    {
+        RuntimeManager.StudioSystem.setParameterByNameWithLabel("SayCategory", "Read");
+        EventInstance instance = RuntimeManager.CreateInstance(manSayEvent);
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        instance.start();
+        instance.release();
     }
 }
