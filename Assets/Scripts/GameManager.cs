@@ -56,8 +56,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        truthText.text = "Truth = " + soundRepresentsTruth;
+    {   
+        if (truthText != null)
+            truthText.text = "Truth = " + soundRepresentsTruth;
 
     }
 }
