@@ -31,6 +31,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 57000
+--- !u!114 &-7574823348555026852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Oillamp
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Oillamp
+  Guid:
+    Data1: -1582155818
+    Data2: 1133174371
+    Data3: -146516834
+    Data4: -1497955215
+  Banks:
+  - {fileID: 6445851561506573378}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1999
 --- !u!114 &-7370858480495947020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +588,7 @@ MonoBehaviour:
   - {fileID: -1642378578896438136}
   - {fileID: 6572046687213999115}
   - {fileID: 1999502951271326013}
+  - {fileID: -7574823348555026852}
   EditorParameters:
   - {fileID: 9068651010055368938}
   - {fileID: -2301784251660038710}
@@ -579,7 +607,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8282329240067557869}
   cacheVersion: 131860
-  cacheTime: 639235238550422957
+  cacheTime: 639235277661986749
   SerializableEventsDict:
   - key: event:/Footsteps
     index: 0
@@ -601,6 +629,8 @@ MonoBehaviour:
     index: 8
   - key: event:/ManSay
     index: 9
+  - key: event:/Oillamp
+    index: 10
 --- !u!114 &124498854882249444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +750,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639235228389441124
+  lastModified: 639235254127754068
   FileSizes: []
   Exists: 1
 --- !u!114 &2946261474234372472
@@ -938,7 +968,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639235238550422957
+  lastModified: 639235277661986749
   FileSizes: []
   Exists: 1
 --- !u!114 &6572046687213999115
@@ -1054,10 +1084,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639235228389446158
+  lastModified: 639235254127764113
   FileSizes:
   - Name: 
-    Value: 2044
+    Value: 2082
   Exists: 1
 --- !u!114 &8748819689448242739
 MonoBehaviour:
