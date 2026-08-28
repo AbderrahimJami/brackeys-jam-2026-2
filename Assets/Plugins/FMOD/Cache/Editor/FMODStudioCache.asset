@@ -21,7 +21,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 5704446861714052142}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters:
   - {fileID: -1679273636507054778}
@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: -2071363841584043010}
   MinDistance: 1
   MaxDistance: 20
-  Length: 56000
+  Length: 57000
 --- !u!114 &-7370858480495947020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +228,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-3794400087202963717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Clock/ClockSelector
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: ClockSelector
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1751733371
+    data2: 1403562917
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-2301784251660038710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,33 +279,6 @@ MonoBehaviour:
   - Kitchen
   - Value C
   Exists: 1
---- !u!114 &-2208474435404560513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Vinyl Noise
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Vinyl Noise
-  Guid:
-    Data1: 1460022393
-    Data2: 1320925103
-    Data3: -240911686
-    Data4: -1026453004
-  Banks:
-  - {fileID: 5704446861714052142}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 31999
 --- !u!114 &-2071363841584043010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +295,7 @@ MonoBehaviour:
   StudioPath: 
   Min: 0
   Max: 1
-  Default: 0.60499996
+  Default: 0.39999998
   ID:
     data1: 220069820
     data2: 1971765973
@@ -357,30 +354,6 @@ MonoBehaviour:
     data2: 488227675
   Type: 1
   IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-1196735189843087376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Ambience/CreakDistance
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: CreakDistance
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2507792200
-    data2: 3892857417
-  Type: 0
-  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-1062936728900452106
@@ -450,12 +423,12 @@ MonoBehaviour:
   - {fileID: 5704446861714052142}
   EditorEvents:
   - {fileID: 124498854882249444}
-  - {fileID: 8954378536798166427}
-  - {fileID: -2208474435404560513}
   - {fileID: -8319317572521827273}
   - {fileID: 6380084240009928237}
   - {fileID: 4288444196932714198}
   - {fileID: -1716658319325235663}
+  - {fileID: 438453442053684848}
+  - {fileID: 3803694952350761622}
   EditorParameters:
   - {fileID: 9068651010055368938}
   - {fileID: -2301784251660038710}
@@ -472,21 +445,21 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8282329240067557869}
   cacheVersion: 131860
-  cacheTime: 639235055983740949
+  cacheTime: 639234351339109119
   SerializableEventsDict:
   - key: event:/Footsteps
     index: 0
-  - key: event:/Ambience
-    index: 1
-  - key: event:/Vinyl Noise
-    index: 2
   - key: event:/Music
-    index: 3
+    index: 1
   - key: event:/Door
-    index: 4
+    index: 2
   - key: event:/Candle
-    index: 5
+    index: 3
   - key: event:/Breathing
+    index: 4
+  - key: event:/Clock
+    index: 5
+  - key: event:/WoodNoise
     index: 6
 --- !u!114 &124498854882249444
 MonoBehaviour:
@@ -517,6 +490,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 568
+--- !u!114 &438453442053684848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Clock
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Clock
+  Guid:
+    Data1: -1253423470
+    Data2: 1171721483
+    Data3: -474363486
+    Data4: 1847395989
+  Banks:
+  - {fileID: 6445851561506573378}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3794400087202963717}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4458
 --- !u!114 &704682416893885343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +553,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639235055982718001
+  lastModified: 639234346131118928
   FileSizes: []
   Exists: 1
 --- !u!114 &2946261474234372472
@@ -579,6 +580,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &3803694952350761622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WoodNoise
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/WoodNoise
+  Guid:
+    Data1: -1783783235
+    Data2: 1199625736
+    Data3: 1072870056
+    Data4: -791024665
+  Banks:
+  - {fileID: 6445851561506573378}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &4022625229901092481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,7 +673,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639235055983740949
+  lastModified: 639234346132158705
   FileSizes: []
   Exists: 1
 --- !u!114 &6326062657903769101
@@ -717,7 +745,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639235055982491810
+  lastModified: 639234351339109119
   FileSizes: []
   Exists: 1
 --- !u!114 &6625805175528161829
@@ -760,7 +788,7 @@ MonoBehaviour:
   StudioPath: parameter:/VolumeMusic
   Min: 0
   Max: 1
-  Default: 0.60499996
+  Default: 0.39999998
   ID:
     data1: 220069820
     data2: 1971765973
@@ -803,39 +831,11 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639235055982793541
+  lastModified: 639234346131158708
   FileSizes:
   - Name: 
-    Value: 1704
+    Value: 1806
   Exists: 1
---- !u!114 &8954378536798166427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Ambience
-  Guid:
-    Data1: -20533958
-    Data2: 1160417801
-    Data3: -1463578733
-    Data4: 1228852081
-  Banks:
-  - {fileID: 6445851561506573378}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -1196735189843087376}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 71999
 --- !u!114 &9068651010055368938
 MonoBehaviour:
   m_ObjectHideFlags: 0

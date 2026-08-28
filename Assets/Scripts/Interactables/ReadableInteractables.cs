@@ -1,16 +1,18 @@
 using UnityEngine;
 
-// a note, letter or scrap of paper the player can read.
+// a note or letter the player can pick up and read up close.
 // needs a collider on the Interactable layer
 public class ReadableInteractables : MonoBehaviour, InteractionInterface
 {
-    [TextArea(3, 10)]
-    public string text = "Take your pills at 10:00";
+    [Header("How it sits when held up")]
+    [Tooltip("extra rotation so the written side faces the player")]
+    public Vector3 heldRotation = Vector3.zero;
 
-    [Tooltip("optional, shown above the body text")]
-    public string heading;
+    [Tooltip("0 = keep its normal size")]
+    public float heldScale = 0f;
 
-    [Tooltip("off if the player should only be able to read it once")]
+    [Header("Optional")]
+    [Tooltip("off if the player should only read it once")]
     public bool rereadable = true;
 
     public bool HasBeenRead { get; private set; }
@@ -18,10 +20,9 @@ public class ReadableInteractables : MonoBehaviour, InteractionInterface
     public void Interact(GameObject interactor)
     {
         if (HasBeenRead && !rereadable) return;
-
         if (NoteReader.Instance == null)
         {
-            Debug.LogWarning("[Note] no NoteReader in the scene, nothing to show it on");
+            Debug.LogWarning("[Note] no NoteReader on the player, can't hold this up");
             return;
         }
 
