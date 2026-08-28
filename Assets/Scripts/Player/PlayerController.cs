@@ -133,6 +133,9 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
+        rb.linearVelocity = Vector3.zero;
+        TeleportToSafeRoom();
+
 
     }
 
