@@ -96,7 +96,6 @@ public class NoteReader : MonoBehaviour
 
         if (PlayerController.Instance != null) PlayerController.Instance.enabled = false;
         if (GameEvents.NoteOpened != null) GameEvents.NoteOpened(note);
-        Debug.Log("[Note] holding " + note.name + " at " + holdPoint.localPosition);
     }
 
     public void Hide()
@@ -138,7 +137,6 @@ public class NoteReader : MonoBehaviour
         t.localPosition = localPos;
         t.localRotation = localRot;
         t.localScale = scale;
-        Debug.Log("[Note] settled at world " + t.position + ", camera at " + Camera.main.transform.position);
         moving = null;
     }
 
