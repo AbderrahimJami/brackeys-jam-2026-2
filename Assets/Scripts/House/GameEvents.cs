@@ -19,6 +19,8 @@ public static class GameEvents
     public static Action<int> KeysChanged;    // new key total
     public static Action<int> ExitRefused;    // how many keys still missing
     public static Action<bool> RunEnded;      // true = escaped
+    public static Action<ReadableInteractables> NoteOpened;
+    public static Action NoteClosed;
 
     public static void Interact(InteractionKind kind)
     {
