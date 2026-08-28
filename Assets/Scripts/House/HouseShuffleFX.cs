@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 namespace TrustNoOne.Shuffle
 {
@@ -15,6 +17,9 @@ namespace TrustNoOne.Shuffle
         public float duration = 1.2f;
         public float minGap = 0.03f;
         public float maxGap = 0.12f;
+
+        [Header("FMOD")]
+        [SerializeField] private EventReference manSayEvent;
 
         [Range(0f, 1f)]
         [Tooltip("0 = full blackout on the off beats")]
@@ -37,6 +42,7 @@ namespace TrustNoOne.Shuffle
             if (!isActiveAndEnabled) return;
             if (running != null) StopCoroutine(running);
             running = StartCoroutine(Flicker());
+            PlayManSay();
         }
 
         IEnumerator Flicker()
@@ -66,6 +72,9 @@ namespace TrustNoOne.Shuffle
 
                 float gap = Random.Range(minGap, maxGap);
                 t += gap;
+
+                RuntimeManager.StudioSystem.setParameterByName("LightGain", System.Convert.ToSingle(dark));
+
                 yield return new WaitForSeconds(gap);
             }
 
@@ -73,7 +82,17 @@ namespace TrustNoOne.Shuffle
             for (int i = 0; i < active.Count; i++)
                 if (active[i] != null) active[i].intensity = levels[i];
 
+            RuntimeManager.StudioSystem.setParameterByName("LightGain", 1f);
+
             running = null;
+        }
+
+        void PlayManSay()
+        {
+            EventInstance instance = RuntimeManager.CreateInstance(manSayEvent);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+            instance.start();
+            instance.release();
         }
     }
 }
