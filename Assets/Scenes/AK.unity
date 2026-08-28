@@ -1456,6 +1456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 7649589930320950145, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: chanceOnRoomEnter
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5582,7 +5586,7 @@ PrefabInstance:
       objectReference: {fileID: 1676876843}
     - target: {fileID: 2058675208171055317, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_VersionIndex
-      value: 2169
+      value: 2175
       objectReference: {fileID: 0}
     - target: {fileID: 2719866817392067522, guid: 43cea48c0d2e68841801f3b62c6df714, type: 3}
       propertyPath: m_Mesh
@@ -5606,6 +5610,6 @@ SceneRoots:
   - {fileID: 1479912721}
   - {fileID: 292152844}
   - {fileID: 1847991007}
-  - {fileID: 868979053}
   - {fileID: 3678951318252432134}
+  - {fileID: 868979053}
   - {fileID: 241059712}

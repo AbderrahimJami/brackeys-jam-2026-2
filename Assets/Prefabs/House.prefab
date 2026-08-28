@@ -53852,7 +53852,7 @@ MonoBehaviour:
   gridHeight: 4
   cellSize: 8
   chanceOnKeyItem: 1
-  chanceOnRoomEnter: 1
+  chanceOnRoomEnter: 0.15
   chanceOnLightSwitch: 0.3
   chanceOnPickup: 0.15
   chanceOnDoor: 0.25
