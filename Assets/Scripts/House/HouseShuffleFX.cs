@@ -90,6 +90,7 @@ namespace TrustNoOne.Shuffle
         void PlayManSay()
         {
             EventInstance instance = RuntimeManager.CreateInstance(manSayEvent);
+            RuntimeManager.StudioSystem.setParameterByNameWithLabel("SayCategory", "Surprise");
             instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
             instance.start();
             instance.release();
