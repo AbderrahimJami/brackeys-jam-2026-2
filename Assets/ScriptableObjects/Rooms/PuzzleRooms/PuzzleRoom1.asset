@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02493cce1df0e5c4ba1c06f39b9d68de, type: 3}
+  m_Name: PuzzleRoom1
+  m_EditorClassIdentifier: Assembly-CSharp::TrustNoOne.Shuffle.RoomDefinition
+  roomType: 7
+  doorNorth: 1
+  doorEast: 0
+  doorSouth: 0
+  doorWest: 1
+  lockNorth: 0
+  lockEast: 0
+  lockSouth: 0
+  lockWest: 0
+  minKeys: 0
+  minDistanceFromPlayer: 1
+  minDistanceFromSafeRoom: 2
+  isSafeRoom: 0
+  forbiddenNeighbours: 
+  anchored: 0
+  fixedCell: {x: 0, y: 0}
+  allowRotation: 1
+  required: 1

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrustNoOne.Shuffle.RoomDefinition
   roomType: 1
   doorNorth: 1
-  doorEast: 1
+  doorEast: 0
   doorSouth: 1
-  doorWest: 1
+  doorWest: 0
   lockNorth: 0
   lockEast: 0
   lockSouth: 0
