@@ -25,6 +25,9 @@ public class NoteReader : MonoBehaviour
 
     public bool IsOpen { get; private set; }
 
+    [Tooltip("light that switches on only while reading")]
+    public Light readingLight;
+
     ReadableInteractables held;
     Transform homeParent;
     Vector3 homePos;
@@ -36,6 +39,8 @@ public class NoteReader : MonoBehaviour
 
     void Awake()
     {
+        // only the one with a hold point wired up gets to be the reader
+        if (holdPoint == null) return;
         Instance = this;
     }
 
@@ -58,7 +63,7 @@ public class NoteReader : MonoBehaviour
         if (IsOpen || note == null) return;
         if (holdPoint == null)
         {
-            Debug.LogWarning("[Note] no hold point set on NoteReader");
+            Debug.LogWarning("[Note] no hold point set on NoteReader, object is " + gameObject.name);
             return;
         }
 
@@ -84,12 +89,14 @@ public class NoteReader : MonoBehaviour
         moving = StartCoroutine(MoveTo(t, Vector3.zero, Quaternion.Euler(note.heldRotation), targetScale));
 
         if (dimOverlay != null) dimOverlay.SetActive(true);
+        if (readingLight != null) readingLight.gameObject.SetActive(true);
 
         IsOpen = true;
         openedAt = Time.time;
 
         if (PlayerController.Instance != null) PlayerController.Instance.enabled = false;
         if (GameEvents.NoteOpened != null) GameEvents.NoteOpened(note);
+        Debug.Log("[Note] holding " + note.name + " at " + holdPoint.localPosition);
     }
 
     public void Hide()
@@ -103,6 +110,7 @@ public class NoteReader : MonoBehaviour
         moving = StartCoroutine(MoveHome(t));
 
         if (dimOverlay != null) dimOverlay.SetActive(false);
+        if (readingLight != null) readingLight.gameObject.SetActive(false);
 
         IsOpen = false;
 
@@ -130,6 +138,7 @@ public class NoteReader : MonoBehaviour
         t.localPosition = localPos;
         t.localRotation = localRot;
         t.localScale = scale;
+        Debug.Log("[Note] settled at world " + t.position + ", camera at " + Camera.main.transform.position);
         moving = null;
     }
 

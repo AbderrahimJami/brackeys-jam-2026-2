@@ -19,6 +19,7 @@ public class ReadableInteractables : MonoBehaviour, InteractionInterface
 
     public void Interact(GameObject interactor)
     {
+        Debug.Log("[Note] interact on " + gameObject.name);
         if (HasBeenRead && !rereadable) return;
         if (NoteReader.Instance == null)
         {
