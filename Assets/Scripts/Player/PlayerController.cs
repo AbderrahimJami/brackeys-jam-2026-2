@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using TrustNoOne.Shuffle;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -78,6 +79,24 @@ public class PlayerController : MonoBehaviour
         return inventory;
     }
 
+    public void TeleportToSafeRoom()
+    {
+        RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+
+            if (rooms[i].definition.roomType == RoomType.SafeRoom)
+            {
+                Vector3 newPos = rooms[i].gameObject.transform.position;
+                newPos.y += 2f;
+                transform.position = newPos;
+                return;
+            }
+
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -107,8 +126,8 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-    }
 
+    }
 
     void handleInteractions()
     {
@@ -117,14 +136,11 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxInteractionDist, interactableMask))
         {
-            crosshair.color = Color.red;
+            InteractionInterface i = hit.transform.gameObject.GetComponentInParent<InteractionInterface>();
+            crosshair.color = i != null ? Color.red : Color.black;
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                InteractionInterface i = hit.transform.gameObject.GetComponent<InteractionInterface>();
-                if (i != null)
-                    i.Interact(gameObject);
-            }
+            if (i != null && Input.GetKeyDown(KeyCode.E))
+                i.Interact(gameObject);
         }
         else
         {
@@ -160,6 +176,7 @@ public class PlayerController : MonoBehaviour
         mainCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         oriantationTransform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
+
     }
 
     void Update()
@@ -185,6 +202,11 @@ public class PlayerController : MonoBehaviour
 
         // head bobbing
         handleHeadBobbing();
+
+
+        // teleportation to saferoom
+        if (Input.GetKeyDown(KeyCode.P))
+            TeleportToSafeRoom();
 
     }
 
