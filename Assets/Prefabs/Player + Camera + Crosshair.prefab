@@ -2628,7 +2628,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2028
+  m_VersionIndex: 2040
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2728,7 +2728,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.16627032
+  m_Radius: 0.3
   m_Height: 1.6000004
   m_Direction: 1
   m_Center: {x: 0.0016904026, y: 0, z: 0.000000022351742}
@@ -3191,7 +3191,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
