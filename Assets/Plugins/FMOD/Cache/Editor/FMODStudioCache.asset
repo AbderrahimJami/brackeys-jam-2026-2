@@ -154,6 +154,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-5246681833745011352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Breathing/AllowCough
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: AllowCough
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1995753167
+    data2: 2682296086
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5186441952955251667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +199,30 @@ MonoBehaviour:
     data1: 3456189671
     data2: 1930610741
   Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-4582936317110433872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AllowCough
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: AllowCough
+  StudioPath: parameter:/AllowCough
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1995753167
+    data2: 2682296086
+  Type: 1
   IsGlobal: 1
   Labels: []
   Exists: 1
@@ -251,6 +299,58 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Labels: []
+  Exists: 1
+--- !u!114 &-2920648576735644405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Breathing/CurrentlyCoughing
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlyCoughing
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1155695364
+    data2: 2327534277
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
+  Exists: 1
+--- !u!114 &-2324661695578283554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CurrentlyCoughing
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlyCoughing
+  StudioPath: parameter:/CurrentlyCoughing
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1155695364
+    data2: 2327534277
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
   Exists: 1
 --- !u!114 &-2301784251660038710
 MonoBehaviour:
@@ -329,6 +429,8 @@ MonoBehaviour:
   Parameters:
   - {fileID: 6326062657903769101}
   - {fileID: 4022625229901092481}
+  - {fileID: -2920648576735644405}
+  - {fileID: -5246681833745011352}
   MinDistance: 1
   MaxDistance: 20
   Length: 17
@@ -356,6 +458,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-1642378578896438136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LightFlicker
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/LightFlicker
+  Guid:
+    Data1: 102104628
+    Data2: 1171586053
+    Data3: -1097209202
+    Data4: 1501991311
+  Banks:
+  - {fileID: 6445851561506573378}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-1062936728900452106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +558,9 @@ MonoBehaviour:
   - {fileID: -1716658319325235663}
   - {fileID: 438453442053684848}
   - {fileID: 3803694952350761622}
+  - {fileID: -1642378578896438136}
+  - {fileID: 6572046687213999115}
+  - {fileID: 1999502951271326013}
   EditorParameters:
   - {fileID: 9068651010055368938}
   - {fileID: -2301784251660038710}
@@ -440,12 +572,14 @@ MonoBehaviour:
   - {fileID: -6354048120177447469}
   - {fileID: 7730313593103943617}
   - {fileID: -5639353577574402880}
+  - {fileID: -2324661695578283554}
+  - {fileID: -4582936317110433872}
   MasterBanks:
   - {fileID: 2649819470846917877}
   StringsBanks:
   - {fileID: 8282329240067557869}
   cacheVersion: 131860
-  cacheTime: 639235300043601583
+  cacheTime: 639235238550422957
   SerializableEventsDict:
   - key: event:/Footsteps
     index: 0
@@ -461,6 +595,12 @@ MonoBehaviour:
     index: 5
   - key: event:/WoodNoise
     index: 6
+  - key: event:/LightFlicker
+    index: 7
+  - key: event:/ManCough
+    index: 8
+  - key: event:/ManSay
+    index: 9
 --- !u!114 &124498854882249444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +678,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1074
   Exists: 1
+--- !u!114 &1999502951271326013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ManSay
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ManSay
+  Guid:
+    Data1: -1022279968
+    Data2: 1281513017
+    Data3: -1469753969
+    Data4: -1127801203
+  Banks:
+  - {fileID: 6445851561506573378}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2800
 --- !u!114 &2649819470846917877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +720,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639235300043456440
+  lastModified: 639235228389441124
   FileSizes: []
   Exists: 1
 --- !u!114 &2946261474234372472
@@ -607,6 +774,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &3968994442219236384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ManCough/CurrentlyCoughing
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: CurrentlyCoughing
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1155695364
+    data2: 2327534277
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - False
+  - True
+  Exists: 1
 --- !u!114 &4022625229901092481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +866,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639235300043601583
+  lastModified: 639235156792922613
   FileSizes: []
   Exists: 1
 --- !u!114 &6326062657903769101
@@ -745,9 +938,39 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639235300043446389
+  lastModified: 639235238550422957
   FileSizes: []
   Exists: 1
+--- !u!114 &6572046687213999115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ManCough
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ManCough
+  Guid:
+    Data1: 2102836946
+    Data2: 1321333318
+    Data3: -2138760057
+    Data4: -1659994095
+  Banks:
+  - {fileID: 6445851561506573378}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3968994442219236384}
+  - {fileID: 8748819689448242739}
+  - {fileID: 8893653460934214883}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &6625805175528161829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,10 +1054,60 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639235300043456440
+  lastModified: 639235228389446158
   FileSizes:
   - Name: 
-    Value: 1806
+    Value: 2044
+  Exists: 1
+--- !u!114 &8748819689448242739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ManCough/AllowCough
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: AllowCough
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1995753167
+    data2: 2682296086
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &8893653460934214883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ManCough/Breathe
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Breathe
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3375396365
+    data2: 3263177723
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - In
+  - Out
   Exists: 1
 --- !u!114 &9068651010055368938
 MonoBehaviour:

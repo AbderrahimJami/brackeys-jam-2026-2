@@ -10,7 +10,8 @@ public class PlayerAudio : MonoBehaviour
     [Header("FMOD")]
     [SerializeField] private EventReference footstepEvent;
     [SerializeField] private EventReference breatheEvent;
-    
+
+
 
     [Header("Surface Detection")]
     [SerializeField] private float raycastDistance = 1.2f;
