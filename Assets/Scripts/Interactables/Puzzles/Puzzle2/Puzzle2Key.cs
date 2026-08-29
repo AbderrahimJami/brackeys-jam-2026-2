@@ -12,7 +12,7 @@ namespace Interactables.Puzzles.Puzzle2
 
 
         MeshRenderer meshRenderer;
-        BoxCollider collider;
+        Collider collider;
 
         [SerializeField]
         List<Puzzle2Button> allButtons;

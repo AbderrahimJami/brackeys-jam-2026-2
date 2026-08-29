@@ -1,3 +1,4 @@
+using Interactables.Puzzles.Puzzle2;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Interactables.Puzzles.Puzzle3
     {
         [Header("Puzzle References")]
         [SerializeField] private Puzzle3Clock workingClock;
-        [SerializeField] private Puzzle3CompartmentDoor compartmentDoor;
+        [SerializeField] private Puzzle2Key key;
 
         [Header("Display")]
         [SerializeField] private TextMeshPro hourText;
@@ -53,7 +54,7 @@ namespace Interactables.Puzzles.Puzzle3
             }
 
             _isSolved = true;
-            compartmentDoor.Open();
+            key.puzzleSolved();
         }
 
         private void UpdateDisplay()
