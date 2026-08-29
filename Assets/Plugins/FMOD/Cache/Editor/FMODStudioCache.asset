@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8999407863162373224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TakeKey/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-8724778717738018317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +274,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639236395461059396
+  lastModified: 639236527999225712
   FileSizes: []
   Exists: 1
 --- !u!114 &-6243290502375751337
@@ -331,6 +355,34 @@ MonoBehaviour:
   - Kitchen
   - Value C
   Exists: 1
+--- !u!114 &-5721194419819270290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Button
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Button
+  Guid:
+    Data1: 387380158
+    Data2: 1120242359
+    Data3: -536420212
+    Data4: 1359383299
+  Banks:
+  - {fileID: -6249402231847248043}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 3411598300813198206}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-5403637110296539836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +452,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639236387464933273
+  lastModified: 639236527999235723
   FileSizes:
   - Name: 
     Value: 2502
@@ -489,6 +541,34 @@ MonoBehaviour:
   - Left
   - Right
   Exists: 1
+--- !u!114 &-3998184169284737912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TakeKey
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/TakeKey
+  Guid:
+    Data1: -1003804342
+    Data2: 1296556979
+    Data3: 1780507559
+    Data4: -1726280478
+  Banks:
+  - {fileID: -6249402231847248043}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8999407863162373224}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 50
 --- !u!114 &-3984189592122380149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +802,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-1499464734275878709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ItemRotate/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-1226942804256638190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,11 +959,11 @@ MonoBehaviour:
   - {fileID: -285536089123070543}
   - {fileID: -4804163881053848602}
   - {fileID: -3984189592122380149}
-  - {fileID: 4722180008809805743}
-  - {fileID: -3164649004356076354}
-  - {fileID: 7048379008431394655}
-  - {fileID: -425907526567225945}
-  - {fileID: -8157258253787166496}
+  - {fileID: -3998184169284737912}
+  - {fileID: 5438857732013812776}
+  - {fileID: -5721194419819270290}
+  - {fileID: 8174852325098890407}
+  - {fileID: 6095645730080902948}
   EditorParameters:
   - {fileID: 1692269056361585269}
   - {fileID: -2270825884988873696}
@@ -883,7 +987,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5163578226914044839}
   cacheVersion: 131860
-  cacheTime: 639236395461059396
+  cacheTime: 639236527999235723
   SerializableEventsDict:
   - key: event:/Candle
     index: 0
@@ -907,15 +1011,15 @@ MonoBehaviour:
     index: 9
   - key: event:/Music
     index: 10
-  - key: event:/ReadNote
+  - key: event:/TakeKey
     index: 11
-  - key: event:/Button
-    index: 12
   - key: event:/DoorFail
+    index: 12
+  - key: event:/Button
     index: 13
   - key: event:/ItemRotate
     index: 14
-  - key: event:/TakeKey
+  - key: event:/ReadNote
     index: 15
 --- !u!114 &553679198135494388
 MonoBehaviour:
@@ -1209,7 +1313,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639236387464923231
+  lastModified: 639236435294291455
   FileSizes: []
   Exists: 1
 --- !u!114 &3195987701100432721
@@ -1240,6 +1344,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4458
+--- !u!114 &3411598300813198206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Button/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &3639197220846789358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1596,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &5438857732013812776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorFail
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DoorFail
+  Guid:
+    Data1: 1297762433
+    Data2: 1335324675
+    Data3: -613755468
+    Data4: 899999591
+  Banks:
+  - {fileID: -6249402231847248043}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 460
 --- !u!114 &5752280018284509015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,6 +1677,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 648
+--- !u!114 &6095645730080902948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ReadNote
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ReadNote
+  Guid:
+    Data1: -546813196
+    Data2: 1196018102
+    Data3: -411062353
+    Data4: -592806785
+  Banks:
+  - {fileID: -6249402231847248043}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &6456080665262369358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,6 +1881,34 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &8174852325098890407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ItemRotate
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ItemRotate
+  Guid:
+    Data1: -868567323
+    Data2: 1226117836
+    Data3: -934043464
+    Data4: -1625747215
+  Banks:
+  - {fileID: -6249402231847248043}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -1499464734275878709}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 460
 --- !u!114 &8693586697400326556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1740,7 +1950,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639236257757172323
+  lastModified: 639236435294579962
   FileSizes: []
   Exists: 1
 --- !u!114 &8829110797175327950
