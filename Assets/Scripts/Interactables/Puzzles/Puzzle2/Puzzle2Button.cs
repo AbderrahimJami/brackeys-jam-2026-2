@@ -1,6 +1,8 @@
+using FMOD.Studio;
+using FMODUnity;
+using Interactables.Puzzles.Puzzle3;
 using System;
 using System.Collections;
-using Interactables.Puzzles.Puzzle3;
 using UnityEngine;
 
 namespace Interactables.Puzzles.Puzzle2
@@ -21,6 +23,10 @@ namespace Interactables.Puzzles.Puzzle2
         [SerializeField] private Puzzle2Button[] otherButtons;
         [SerializeField] private float pressDepth = 0.02f;
         [SerializeField] private float pressDuration = 0.1f;
+
+        [Header("FMOD")]
+        [SerializeField] private EventReference pressButtonEvent;
+        
         [SerializeField] private PushButtonDirection buttonPushDirection = PushButtonDirection.X;
 
         [SerializeField] private Puzzle2Key key;
@@ -43,6 +49,8 @@ namespace Interactables.Puzzles.Puzzle2
             }
             if (!_isPressing)
                 StartCoroutine(PressRoutine());
+
+            PlayButtonSound();
 
         }
 
@@ -101,6 +109,13 @@ namespace Interactables.Puzzles.Puzzle2
 
             transform.position = to;
         }
-        
+        void PlayButtonSound()
+        {
+            EventInstance instance = RuntimeManager.CreateInstance(pressButtonEvent);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+            instance.start();
+            instance.release();
+        }
     }
 }
+    

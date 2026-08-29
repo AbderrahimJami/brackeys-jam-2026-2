@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
+
 
 namespace Interactables
 {
@@ -9,11 +12,16 @@ namespace Interactables
         [SerializeField] private float duration = 0.5f;
         private bool _isRotating;
 
+
+        [Header("FMOD")]
+        [SerializeField] private EventReference rotateItemEvent;
+
         public void Interact(GameObject interactor)
         {
             if (!_isRotating)
             {
                 StartCoroutine(nameof(RotateRoutine));
+                PlayRotateSound();
             }
         }
 
@@ -35,6 +43,14 @@ namespace Interactables
             transform.localRotation = targetRotation;
             OnRotate?.Invoke();
             _isRotating = false;
+        }
+
+        void PlayRotateSound()
+        {
+            EventInstance instance = RuntimeManager.CreateInstance(rotateItemEvent);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+            instance.start();
+            instance.release();
         }
 
         public event Action OnRotate;
