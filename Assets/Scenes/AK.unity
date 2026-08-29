@@ -3014,6 +3014,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 118414565255519668, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 182542103583241748, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209453449816875744, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209453449816875744, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 286067961498803885, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3066,6 +3082,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 760805391253953741, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760805391253953741, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 875199421379176158, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3074,6 +3098,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1549245212}
+    - target: {fileID: 1046874333751583627, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046874333751583627, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1096027301514070221, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3082,6 +3114,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 28648026}
+    - target: {fileID: 1497409628929413736, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1605729282918900023, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3110,6 +3146,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 232700289}
+    - target: {fileID: 2451101450915490134, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451101450915490134, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742090845319288336, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742090845319288336, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2839632134495359760, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3126,6 +3178,14 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 82
       objectReference: {fileID: 0}
+    - target: {fileID: 3054218439015487355, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054218439015487355, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3064500787218403325, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3138,10 +3198,26 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 145
       objectReference: {fileID: 0}
+    - target: {fileID: 3328538030229911726, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451168048955884238, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3796348017710336459, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 648881126}
+    - target: {fileID: 4103533950632633725, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211318877630740381, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4328487929555788296, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3149,6 +3225,14 @@ PrefabInstance:
     - target: {fileID: 4328487929555788296, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_VersionIndex
       value: 2252
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939273414089667632, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973196545331766779, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5003049274786239027, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
@@ -3170,10 +3254,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 5271735279149113331, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271735279149113331, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5276048703365946501, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2029668087}
+    - target: {fileID: 5384309435968314022, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526532247397158178, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526532247397158178, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638551011733082685, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5713832176862841212, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3181,6 +3289,14 @@ PrefabInstance:
     - target: {fileID: 5713832176862841212, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_VersionIndex
       value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734399269906915494, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734399269906915494, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5747212941997936154, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
@@ -3198,6 +3314,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 19289812}
+    - target: {fileID: 6251151930419128874, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471273823860358686, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471273823860358686, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6679488548830741918, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3209,6 +3337,26 @@ PrefabInstance:
     - target: {fileID: 6699300280866008045, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_VersionIndex
       value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035208652234697320, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035208652234697320, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221746839186225337, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221746839186225337, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372847452997040313, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7407720449261726405, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
@@ -3230,6 +3378,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 82
       objectReference: {fileID: 0}
+    - target: {fileID: 7772783633327559493, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7821308255554444213, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3242,6 +3394,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 28648026}
+    - target: {fileID: 8161779202729511813, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161779202729511813, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464314114571992933, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8528960963595213400, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3250,6 +3414,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1890152844}
+    - target: {fileID: 8576645942185943776, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8799036995471210048, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3262,6 +3430,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 485267862}
+    - target: {fileID: 9006207579581703125, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006207579581703125, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9156287795073138024, guid: 218bc9308cc0b8741bc7c94e0c92c76e, type: 3}
       propertyPath: m_Mesh
       value: 
