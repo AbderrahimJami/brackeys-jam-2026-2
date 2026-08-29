@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
 
     public void TeleportToSafeRoom()
     {
+        if (rb == null) rb = GetComponent<Rigidbody>();
 
         //rb.useGravity = false;
         //rb.linearVelocity = Vector3.zero;
@@ -148,10 +149,6 @@ public class PlayerController : MonoBehaviour
         
 
         Cursor.lockState = CursorLockMode.Locked;
-
-        TeleportToSafeRoom();
-
-
     }
 
     void handleInteractions()
