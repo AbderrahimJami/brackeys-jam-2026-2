@@ -45,4 +45,6 @@ public class ReadableInteractables : MonoBehaviour, InteractionInterface
         instance.start();
         instance.release();
     }
+
+    
 }
