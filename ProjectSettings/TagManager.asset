@@ -8,6 +8,7 @@ TagManager:
   - Carpet
   - Stone
   - Interactable
+  - Music
   layers:
   - Default
   - TransparentFX
