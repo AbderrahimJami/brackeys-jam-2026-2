@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Camera camera;
     [SerializeField]
-    float cameraSensitivity = 100f;
+    public float cameraSensitivity = 100f;
 
     [System.Serializable]
     private struct HeadBobbingProfiles
