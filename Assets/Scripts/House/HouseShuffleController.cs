@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,7 +61,21 @@ namespace TrustNoOne.Shuffle
                 Debug.LogError("[House] initial layout failed: " + res.FailReason + " - check door sockets and forbidden lists");
             Apply(res.Layout);
 
-            Debug.Log("NOW TELEPORTING PLAYER");
+            StartCoroutine(PlacePlayerWhenReady());
+        }
+
+        // the player's own Start may not have run yet, and the rigidbody needs a frame
+        // to settle before we yank it across the house
+        IEnumerator PlacePlayerWhenReady()
+        {
+            yield return null;
+
+            if (PlayerController.Instance == null)
+            {
+                Debug.LogWarning("[House] no player in the scene to place");
+                yield break;
+            }
+
             PlayerController.Instance.TeleportToSafeRoom();
         }
 
@@ -220,7 +235,8 @@ namespace TrustNoOne.Shuffle
                 return;
             }
 
-            GameManager.Instance.setSoundRepresentsTruth(!GameManager.Instance.getSoundRepresentsTruth());
+            if (GameManager.Instance != null)
+                GameManager.Instance.setSoundRepresentsTruth(!GameManager.Instance.getSoundRepresentsTruth());
 
             Apply(res.Layout);
             lastShuffleTime = Time.time;
