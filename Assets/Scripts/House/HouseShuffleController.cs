@@ -70,13 +70,18 @@ namespace TrustNoOne.Shuffle
         {
             yield return null;
 
-            if (PlayerController.Instance == null)
+            while (true)
             {
-                Debug.LogWarning("[House] no player in the scene to place");
-                yield break;
-            }
 
-            PlayerController.Instance.TeleportToSafeRoom();
+                if (PlayerController.Instance != null && PlayerController.Instance.getIsInitialized())
+                {
+                    PlayerController.Instance.TeleportToSafeRoom();
+                    yield break;
+                }
+
+                yield return new WaitForSeconds(0.1f);
+
+            }
         }
 
         void CheckIds()
