@@ -60,11 +60,13 @@ public class SettingsPanel : MonoBehaviour
             sensitivityValue.text = Mathf.RoundToInt(s.Sensitivity).ToString();
 
             PlayerPrefs.SetFloat("cameraSensitivity", s.Sensitivity);
+            PlayerPrefs.Save();
         }
         if (brightnessValue != null)
         {
             brightnessValue.text = s.Brightness.ToString("0.0");
             PlayerPrefs.SetFloat("brightness", s.Brightness);
+            PlayerPrefs.Save();
         }
     }
 

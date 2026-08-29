@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
         if (!PlayerPrefs.HasKey("cameraSensitivity"))
         {
             PlayerPrefs.SetFloat("cameraSensitivity", cameraSensitivity);
+            PlayerPrefs.Save();
         }
         else
         {

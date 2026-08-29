@@ -198,7 +198,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639236244822211090
+  lastModified: 639235538523162037
   FileSizes: []
   Exists: 1
 --- !u!114 &-6243290502375751337
@@ -348,7 +348,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639236256437469860
+  lastModified: 639236435294301454
   FileSizes:
   - Name: 
     Value: 2290
@@ -465,7 +465,7 @@ MonoBehaviour:
   - {fileID: -3795504871506436493}
   - {fileID: 1838788712136647902}
   - {fileID: 3838198084419276509}
-  - {fileID: 7496005839056859574}
+  - {fileID: -2692715075647156798}
   MinDistance: 1
   MaxDistance: 20
   Length: 84500
@@ -545,6 +545,30 @@ MonoBehaviour:
   Labels:
   - Left
   - Right
+  Exists: 1
+--- !u!114 &-2692715075647156798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/GameStart
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: GameStart
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3724839056
+    data2: 2474702882
+  Type: 1
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &-2270825884988873696
 MonoBehaviour:
@@ -716,13 +740,13 @@ MonoBehaviour:
   - {fileID: 4990550665129195311}
   - {fileID: -5207706303133818046}
   - {fileID: -1226942804256638190}
-  - {fileID: 8829110797175327950}
+  - {fileID: 5752280018284509015}
   MasterBanks:
   - {fileID: 2655924286706725494}
   StringsBanks:
   - {fileID: -5163578226914044839}
   cacheVersion: 131860
-  cacheTime: 639236257757172323
+  cacheTime: 639236435294579962
   SerializableEventsDict:
   - key: event:/Candle
     index: 0
@@ -1014,7 +1038,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639236256437454763
+  lastModified: 639236435294291455
   FileSizes: []
   Exists: 1
 --- !u!114 &3195987701100432721
@@ -1246,6 +1270,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &5752280018284509015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/GameStart
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: GameStart
+  StudioPath: parameter:/GameStart
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3724839056
+    data2: 2474702882
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &6051824925171718615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,7 +1515,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639236257757172323
+  lastModified: 639236435294579962
   FileSizes: []
   Exists: 1
 --- !u!114 &8829110797175327950
