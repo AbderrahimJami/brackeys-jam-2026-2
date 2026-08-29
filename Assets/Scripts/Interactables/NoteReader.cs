@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 // goes on the player. brings the actual letter up in front of the camera to read,
 // then puts it back where it was
@@ -27,6 +29,9 @@ public class NoteReader : MonoBehaviour
 
     [Tooltip("light that switches on only while reading")]
     public Light readingLight;
+
+    [Header("FMOD")]
+    [SerializeField] private EventReference readNoteEvent;
 
     ReadableInteractables held;
     Transform homeParent;
@@ -96,6 +101,8 @@ public class NoteReader : MonoBehaviour
 
         if (PlayerController.Instance != null) PlayerController.Instance.enabled = false;
         if (GameEvents.NoteOpened != null) GameEvents.NoteOpened(note);
+
+        PlayReadNote();
     }
 
     public void Hide()
@@ -115,6 +122,8 @@ public class NoteReader : MonoBehaviour
 
         if (PlayerController.Instance != null) PlayerController.Instance.enabled = true;
         if (GameEvents.NoteClosed != null) GameEvents.NoteClosed();
+
+        PlayReadNote();
     }
 
     IEnumerator MoveTo(Transform t, Vector3 localPos, Quaternion localRot, Vector3 scale)
@@ -165,5 +174,12 @@ public class NoteReader : MonoBehaviour
         heldCollider = null;
         held = null;
         moving = null;
+    }
+    void PlayReadNote()
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(readNoteEvent);
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        instance.start();
+        instance.release();
     }
 }

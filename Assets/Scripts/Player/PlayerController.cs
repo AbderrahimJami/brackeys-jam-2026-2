@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             cameraSensitivity = PlayerPrefs.GetFloat("cameraSensitivity");
+            PlayerPrefs.Save();
         }
     }
 

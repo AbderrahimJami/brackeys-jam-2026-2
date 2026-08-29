@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -67,7 +69,10 @@ namespace TrustNoOne.Shuffle
                 int short_ = keysNeeded - KeysCollected;
                 Debug.Log("[Endgame] exit locked, still need " + short_ + " key(s)");
                 if (GameEvents.ExitRefused != null) GameEvents.ExitRefused(short_);
-                return;
+
+                
+
+                return;                
             }
 
             End(door.index == trueExitIndex);
@@ -96,5 +101,6 @@ namespace TrustNoOne.Shuffle
             Cursor.visible = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+       
     }
 }
