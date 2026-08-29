@@ -84,38 +84,51 @@ public class PlayerController : MonoBehaviour
 
     GameObject teleportLocationObject;
 
+
+    bool isInitialized = false;
+
+
+    public bool getIsInitialized()
+    {
+        return isInitialized;
+    }
+
     public Inventory getInventory()
     {
         return inventory;
     }
 
+
+
     public void TeleportToSafeRoom()
     {
         if (rb == null) rb = GetComponent<Rigidbody>();
 
-        //rb.useGravity = false;
-        //rb.linearVelocity = Vector3.zero;
-        //transform.position = teleportLocationObject.transform.position;
-        //rb.linearVelocity = Vector3.zero;
-        //rb.useGravity = true;
-
+        // 1. Find the safe room (Consider caching this list elsewhere if called often)
         RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
 
         for (int i = 0; i < rooms.Length; i++)
         {
-
             if (rooms[i].definition.roomType == RoomType.SafeRoom)
             {
-                Vector3 newPos = rooms[i].gameObject.transform.position;
-                newPos.y += 2f;
-                rb.useGravity = false;
+                // 2. Calculate the destination world position
+                Vector3 targetWorldPos = rooms[i].gameObject.transform.position;
+                targetWorldPos.y += 2f;
+
+                // 3. Properly reset physics forces
                 rb.linearVelocity = Vector3.zero;
-                transform.position = newPos;
-                rb.useGravity = true;
+                rb.angularVelocity = Vector3.zero; // Stops any spinning
+
+                // 4. Teleport the Rigidbody directly in world space
+                rb.position = targetWorldPos;
+                transform.position = targetWorldPos; // Syncs transform immediately
+
+                Debug.Log("Player Teleported to Safe Room");
                 return;
             }
-
         }
+
+        Debug.Log("Safe Room NOT Found!");
     }
 
     private void Awake()
@@ -150,6 +163,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         setSensi();
+
+        isInitialized = true;
     }
 
 
