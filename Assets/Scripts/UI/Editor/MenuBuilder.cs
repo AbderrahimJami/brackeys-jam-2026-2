@@ -122,7 +122,7 @@ public class MenuBuilder
         Place(header.rectTransform, 0, 240, 800, 90);
         header.alignment = TextAlignmentOptions.Center;
 
-        TMP_Text sensVal, brightVal;
+        TextMeshProUGUI sensVal, brightVal;
         var sens = MakeSlider(parent, "Sensitivity", "Mouse Sensitivity", 0, 80, out sensVal);
         var bright = MakeSlider(parent, "Brightness", "Brightness", 0, -30, out brightVal);
 
@@ -189,7 +189,7 @@ public class MenuBuilder
         img.raycastTarget = false;
     }
 
-    static TMP_Text MakeText(Transform parent, string name, string content, float size, Color colour)
+    static TextMeshProUGUI MakeText(Transform parent, string name, string content, float size, Color colour)
     {
         var go = new GameObject(name, typeof(RectTransform));
         go.transform.SetParent(parent, false);
@@ -230,7 +230,7 @@ public class MenuBuilder
         return button;
     }
 
-    static Slider MakeSlider(Transform parent, string name, string label, float x, float y, out TMP_Text valueLabel)
+    static Slider MakeSlider(Transform parent, string name, string label, float x, float y, out TextMeshProUGUI valueLabel)
     {
         var holder = new GameObject(name, typeof(RectTransform));
         holder.transform.SetParent(parent, false);
