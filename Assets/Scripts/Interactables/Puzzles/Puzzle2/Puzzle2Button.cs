@@ -19,11 +19,11 @@ namespace Interactables.Puzzles.Puzzle2
         
         [SerializeField] private bool isCorrect;
         [SerializeField] private Puzzle2Button[] otherButtons;
-        [SerializeField] private Transform punishmentLocation;
-        [SerializeField] private Puzzle3CompartmentDoor compartmentDoor;
         [SerializeField] private float pressDepth = 0.02f;
         [SerializeField] private float pressDuration = 0.1f;
         [SerializeField] private PushButtonDirection buttonPushDirection = PushButtonDirection.X;
+
+        [SerializeField] private Puzzle2Key key;
         private bool _isSolved;
         private bool _isPressing;
 
@@ -34,10 +34,8 @@ namespace Interactables.Puzzles.Puzzle2
             if (isCorrect)
             {
                 _isSolved = true;
-                compartmentDoor.Open();
 
-                foreach (var other in otherButtons)
-                    other.SetSolved();
+                
             }
             else
             {
@@ -57,7 +55,6 @@ namespace Interactables.Puzzles.Puzzle2
         {
             _isSolved = true;
         }
-        
         
         private IEnumerator PressRoutine()
         {
@@ -84,6 +81,12 @@ namespace Interactables.Puzzles.Puzzle2
             yield return MoveOverTime(pressedPos, restPos, pressDuration);
 
             _isPressing = false;
+
+            if (_isSolved)
+            {
+                // correction solution
+                key.puzzleSolved();
+            }
         }
 
         private IEnumerator MoveOverTime(Vector3 from, Vector3 to, float time)

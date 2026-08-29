@@ -97,7 +97,7 @@ Transform:
   m_GameObject: {fileID: 3111244557938163272}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01761, y: -0.027150154, z: -0.16517007}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2178
+  m_VersionIndex: 2199
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2547,9 +2547,10 @@ MonoBehaviour:
     m_Bits: 128
   storedSequencialMessages:
   - Where am I?
+  - Find the two keys
+  - Why is it so dark?!
   - Take your pills at 10:00!
   - Love you grandpa! Sarah
-  - Find all keys
   - hydrate every hour
   - take your meal from the freezer
   - needs to defrost

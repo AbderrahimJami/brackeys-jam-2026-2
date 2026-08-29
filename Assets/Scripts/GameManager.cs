@@ -35,13 +35,13 @@ public class GameManager : MonoBehaviour
     public void setKeysFound(int count)
     {
         keysFound = count;
-        keyScoreText.text = count + "/" + totalKeysInGame;
+        //keyScoreText.text = count + "/" + totalKeysInGame;
     }
 
     public void incrementKeyFound()
     {
         keysFound = keysFound == totalKeysInGame ? keysFound : ++keysFound;
-        keyScoreText.text = keysFound + "/" + totalKeysInGame;
+        //keyScoreText.text = keysFound + "/" + totalKeysInGame;
     }
 
     public int getKeysFound()
@@ -57,8 +57,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {   
-        if (truthText != null)
-            truthText.text = "Truth = " + soundRepresentsTruth;
+        //if (truthText != null)
+        //    truthText.text = "Truth = " + soundRepresentsTruth;
 
     }
 }

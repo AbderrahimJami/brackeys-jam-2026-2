@@ -29,4 +29,4 @@ MonoBehaviour:
   anchored: 0
   fixedCell: {x: 0, y: 0}
   allowRotation: 1
-  required: 1
+  required: 0

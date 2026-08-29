@@ -60,6 +60,7 @@ namespace TrustNoOne.Shuffle
                 Debug.LogError("[House] initial layout failed: " + res.FailReason + " - check door sockets and forbidden lists");
             Apply(res.Layout);
 
+            Debug.Log("NOW TELEPORTING PLAYER");
             PlayerController.Instance.TeleportToSafeRoom();
         }
 
@@ -215,7 +216,7 @@ namespace TrustNoOne.Shuffle
 
             if (!res.Success)
             {
-                if (logShuffles) Debug.LogWarning("[House] shuffle failed, keeping old layout: " + res.FailReason);
+                if (logShuffles) Debug.LogWarning("[House] shuffle failed, keeping old layout: " + res.FailReason + " Total Attempts " + res.Attempts);
                 return;
             }
 
