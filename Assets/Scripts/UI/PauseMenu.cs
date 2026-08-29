@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -76,5 +77,8 @@ public class PauseMenu : MonoBehaviour
         IsPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuSceneName);
+
+        //Music transitions to menu state
+        RuntimeManager.StudioSystem.setParameterByName("GameStart", 0);
     }
 }

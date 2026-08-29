@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,9 @@ public class MainMenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(gameSceneName);
+
+        //Music transitions to in game state
+        RuntimeManager.StudioSystem.setParameterByName("GameStart", 1);
     }
 
     public void ShowMain() { Switch(mainPanel); }
