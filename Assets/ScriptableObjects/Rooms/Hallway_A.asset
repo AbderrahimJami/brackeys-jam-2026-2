@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrustNoOne.Shuffle.RoomDefinition
   roomType: 1
   doorNorth: 1
-  doorEast: 0
+  doorEast: 1
   doorSouth: 1
-  doorWest: 0
+  doorWest: 1
   lockNorth: 0
   lockEast: 0
   lockSouth: 0
@@ -29,4 +29,4 @@ MonoBehaviour:
   anchored: 0
   fixedCell: {x: 0, y: 0}
   allowRotation: 1
-  required: 1
+  required: 0

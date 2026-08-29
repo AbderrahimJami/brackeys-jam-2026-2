@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using TrustNoOne.Shuffle;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Camera camera;
     [SerializeField]
-    float cameraSensitivity = 100f;
+    public float cameraSensitivity = 100f;
 
     [System.Serializable]
     private struct HeadBobbingProfiles
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour
     float headBobbingTimer = 0f;
 
 
+    GameObject teleportLocationObject;
+
     public Inventory getInventory()
     {
         return inventory;
@@ -87,6 +91,13 @@ public class PlayerController : MonoBehaviour
 
     public void TeleportToSafeRoom()
     {
+
+        //rb.useGravity = false;
+        //rb.linearVelocity = Vector3.zero;
+        //transform.position = teleportLocationObject.transform.position;
+        //rb.linearVelocity = Vector3.zero;
+        //rb.useGravity = true;
+
         RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
 
 
@@ -97,7 +108,10 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 newPos = rooms[i].gameObject.transform.position;
                 newPos.y += 2f;
+                rb.useGravity = false;
+                rb.linearVelocity = Vector3.zero;
                 transform.position = newPos;
+                rb.useGravity = true;
                 return;
             }
 
@@ -107,6 +121,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        teleportLocationObject = GameObject.Find("TeleportLocationPlayer");
 
     }
 
@@ -133,7 +149,6 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        rb.linearVelocity = Vector3.zero;
         TeleportToSafeRoom();
 
 
@@ -265,6 +280,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private IEnumerator fadeInText(TextMeshPro text)
+    {
+        float fadeInDuration = 2f;
+        float timer = 0;
+
+        text.alpha = 0f;
+        while (timer < fadeInDuration)
+        {
+            timer += Time.deltaTime;
+
+            text.alpha += Mathf.Lerp(0f, 1f, timer);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -277,11 +308,13 @@ public class PlayerController : MonoBehaviour
 
             for (int i = 0; i < messages.Length; i++)
             {
+
                 TextMeshPro textComponent = messages[i].gameObject.GetComponent<TextMeshPro>();
 
                 if (textComponent != null && textComponent.text.Trim() == "")
                 {
                     textComponent.SetText(storedSequencialMessages[currentSequencialMessageIndex++]);
+                    StartCoroutine(fadeInText(textComponent));
                     if (currentSequencialMessageIndex >= storedSequencialMessages.Count) return;
                 }
 

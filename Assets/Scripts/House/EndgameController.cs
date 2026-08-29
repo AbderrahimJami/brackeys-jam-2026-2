@@ -77,17 +77,16 @@ namespace TrustNoOne.Shuffle
         {
             RunOver = true;
 
-            if (won && winScreen != null) winScreen.SetActive(true);
-            if (!won && loseScreen != null) loseScreen.SetActive(true);
+            if (won)
+            {
+                // code for won condition
+            }
+            else
+            {
+                // code for lose condition
+            }
 
-            if (PlayerController.Instance != null) PlayerController.Instance.enabled = false;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            Debug.Log(won ? "[Endgame] escaped. press " + restartKey + " to restart"
-                          : "[Endgame] wrong door. press " + restartKey + " to restart");
-
-            if (GameEvents.RunEnded != null) GameEvents.RunEnded(won);
+            SceneManager.LoadScene("MainMenu");
         }
 
         [ContextMenu("Restart")]

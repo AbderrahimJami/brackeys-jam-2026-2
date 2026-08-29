@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SafeRoom
   m_EditorClassIdentifier: Assembly-CSharp::TrustNoOne.Shuffle.RoomDefinition
   roomType: 0
-  doorNorth: 1
+  doorNorth: 0
   doorEast: 1
   doorSouth: 1
   doorWest: 1

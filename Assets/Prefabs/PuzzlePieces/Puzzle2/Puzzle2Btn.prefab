@@ -2859,7 +2859,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1361
+  m_VersionIndex: 1511
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2986,8 +2986,7 @@ MonoBehaviour:
   otherButtons:
   - {fileID: 0}
   - {fileID: 0}
-  punishmentLocation: {fileID: 0}
-  compartmentDoor: {fileID: 0}
   pressDepth: 0.02
   pressDuration: 0.1
   buttonPushDirection: 2
+  key: {fileID: 0}

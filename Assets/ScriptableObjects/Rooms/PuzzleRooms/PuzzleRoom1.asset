@@ -22,8 +22,8 @@ MonoBehaviour:
   lockSouth: 0
   lockWest: 0
   minKeys: 0
-  minDistanceFromPlayer: 1
-  minDistanceFromSafeRoom: 2
+  minDistanceFromPlayer: 0
+  minDistanceFromSafeRoom: 3
   isSafeRoom: 0
   forbiddenNeighbours: 
   anchored: 0

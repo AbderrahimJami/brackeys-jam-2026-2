@@ -3182,12 +3182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545e8782863c4777b3465c9f46819ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactables.Puzzle1Key
-  watermelonSlice: {fileID: 1762033791}
-  fork: {fileID: 1864613190}
-  iceCream: {fileID: 1119754504}
-  watermelonSliceRot: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
-  forkRot: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
-  iceCreamRot: {x: 0, y: 0.70710677, z: 0, w: -0.70710677}
+  item1: {fileID: 1762033791}
+  item2: {fileID: 1119754504}
+  item3: {fileID: 1864613190}
+  item1Rot: {x: 0, y: 0, z: 0, w: 0}
+  item2Rot: {x: 0, y: 0, z: 0, w: 0}
+  item3Rot: {x: 0, y: 0, z: 0, w: 0}
+  rotationTolerance: 1
+  compartmentDoor: {fileID: 0}
 --- !u!1 &1698741245
 GameObject:
   m_ObjectHideFlags: 0

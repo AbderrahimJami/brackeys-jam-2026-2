@@ -9,6 +9,7 @@ namespace TrustNoOne.Shuffle
             if (EndgameController.Instance != null)
                 EndgameController.Instance.AddKey();
 
+            Debug.Log("Setting to FALSE on PICKUP");
             gameObject.SetActive(false);
         }
     }
