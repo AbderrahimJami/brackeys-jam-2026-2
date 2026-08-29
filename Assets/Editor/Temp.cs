@@ -28,14 +28,22 @@ public class Temp : EditorWindow
         {
             // Fetch all components including children and inactive objects
             Component[] components = g.GetComponentsInChildren<Component>(true);
+            Component prev = null;
             foreach (Component c in components)
             {
                 // A missing script component evaluates to null
                 if (c == null)
                 {
                     count++;
-                    Debug.LogWarning($"Missing script found on GameObject: {g.name}", g);
+                    if (prev == null)
+                        Debug.LogWarning($"Missing script found on GameObject: {g.name}", g);
+                    else
+                        Debug.LogWarning($"Missing script found on GameObject: {g.name} > {prev.transform.gameObject.name}", g);
                     break; // Move to the next GameObject once one is found
+                }
+                else
+                {
+                    prev = c;
                 }
             }
         }

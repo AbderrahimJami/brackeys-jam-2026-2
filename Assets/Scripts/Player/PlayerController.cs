@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
 
         RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
 
-
         for (int i = 0; i < rooms.Length; i++)
         {
 
@@ -149,6 +148,22 @@ public class PlayerController : MonoBehaviour
         
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        setSensi();
+    }
+
+
+    void setSensi()
+    {
+        if (!PlayerPrefs.HasKey("cameraSensitivity"))
+        {
+            PlayerPrefs.SetFloat("cameraSensitivity", cameraSensitivity);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            cameraSensitivity = PlayerPrefs.GetFloat("cameraSensitivity");
+        }
     }
 
     void handleInteractions()

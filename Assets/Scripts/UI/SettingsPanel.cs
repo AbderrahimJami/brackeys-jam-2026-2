@@ -7,8 +7,8 @@ public class SettingsPanel : MonoBehaviour
 {
     public Slider sensitivitySlider;
     public Slider brightnessSlider;
-    public TMP_Text sensitivityValue;
-    public TMP_Text brightnessValue;
+    public TextMeshProUGUI sensitivityValue;
+    public TextMeshProUGUI brightnessValue;
 
     bool loading;
 
@@ -55,7 +55,24 @@ public class SettingsPanel : MonoBehaviour
         var s = GameSettings.Instance;
         if (s == null) return;
 
-        if (sensitivityValue != null) sensitivityValue.text = Mathf.RoundToInt(s.Sensitivity).ToString();
-        if (brightnessValue != null) brightnessValue.text = s.Brightness.ToString("0.0");
+        if (sensitivityValue != null)
+        {
+            sensitivityValue.text = Mathf.RoundToInt(s.Sensitivity).ToString();
+
+            PlayerPrefs.SetFloat("cameraSensitivity", s.Sensitivity);
+            PlayerPrefs.Save();
+        }
+        if (brightnessValue != null)
+        {
+            brightnessValue.text = s.Brightness.ToString("0.0");
+            PlayerPrefs.SetFloat("brightness", s.Brightness);
+            PlayerPrefs.Save();
+        }
+    }
+
+    private void Update()
+    {
+        sensitivityValue.text = sensitivitySlider.value + "";
+        brightnessValue.text = brightnessSlider.value + "";
     }
 }
