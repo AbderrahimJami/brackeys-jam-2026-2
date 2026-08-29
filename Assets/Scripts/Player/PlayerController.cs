@@ -98,24 +98,24 @@ public class PlayerController : MonoBehaviour
         //rb.linearVelocity = Vector3.zero;
         //rb.useGravity = true;
 
-        //RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
+        RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
 
 
-        //for (int i = 0; i < rooms.Length; i++)
-        //{
+        for (int i = 0; i < rooms.Length; i++)
+        {
 
-        //    if (rooms[i].definition.roomType == RoomType.SafeRoom)
-        //    {
-        //        Vector3 newPos = rooms[i].gameObject.transform.position;
-        //        newPos.y += 2f;
-        //        rb.useGravity = false;
-        //        rb.linearVelocity = Vector3.zero;
-        //        transform.position = newPos;
-        //        rb.useGravity = true;
-        //        return;
-        //    }
+            if (rooms[i].definition.roomType == RoomType.SafeRoom)
+            {
+                Vector3 newPos = rooms[i].gameObject.transform.position;
+                newPos.y += 2f;
+                rb.useGravity = false;
+                rb.linearVelocity = Vector3.zero;
+                transform.position = newPos;
+                rb.useGravity = true;
+                return;
+            }
 
-        //}
+        }
     }
 
     private void Awake()
