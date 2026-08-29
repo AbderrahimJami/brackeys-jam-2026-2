@@ -27,10 +27,10 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (!Input.GetKeyDown(pauseKey)) return;
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.L)) return;
 
         // escape closes a note first, don't pause on that same press
-        if (NoteReader.Instance != null && NoteReader.Instance.IsOpen) return;
+        //if (NoteReader.Instance != null && NoteReader.Instance.IsOpen) return;
 
         if (settingsPanel != null && settingsPanel.activeSelf) { ShowPausePanel(); return; }
 
