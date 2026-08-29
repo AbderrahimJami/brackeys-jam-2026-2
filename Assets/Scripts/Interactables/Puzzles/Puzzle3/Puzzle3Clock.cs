@@ -52,7 +52,7 @@ namespace Interactables.Puzzles.Puzzle3
             var minuteAngle = _currentMinute * 6f;
             var hourAngle = (_currentHour % 12) * 30f;
             minuteHand.transform.localRotation = Quaternion.Euler(0, minuteHand.transform.localRotation.y, minuteAngle);
-            hourHand.transform.localRotation = Quaternion.Euler(0, minuteHand.transform.localRotation.y, hourAngle);
+            hourHand.transform.localRotation = Quaternion.Euler(0, hourHand.transform.localRotation.y, hourAngle);
         }
     }
 }
