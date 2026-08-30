@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using TrustNoOne.Shuffle;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -61,6 +60,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     List<string> storedSequencialMessages = new List<string>();
 
+    [SerializeField]
+    float renderRoomIfDistIsLessThanThis = 10f;
     int currentSequencialMessageIndex = 0;
 
 
@@ -82,7 +83,10 @@ public class PlayerController : MonoBehaviour
     float headBobbingTimer = 0f;
 
 
-    GameObject teleportLocationObject;
+    RoomInstance[] rooms;
+
+
+    float checkDistTimer = 0f;
 
 
     bool isInitialized = false;
@@ -105,7 +109,8 @@ public class PlayerController : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody>();
 
         // 1. Find the safe room (Consider caching this list elsewhere if called often)
-        RoomInstance[] rooms = FindObjectsByType<RoomInstance>();
+        if (rooms.Length == 0)
+            rooms = FindObjectsByType<RoomInstance>();
 
         for (int i = 0; i < rooms.Length; i++)
         {
@@ -131,11 +136,48 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Safe Room NOT Found!");
     }
 
+
+    void CheckDistances()
+    {
+
+
+        checkDistTimer += Time.deltaTime;
+
+        if (checkDistTimer < 2f) return;
+
+        if (transform == null || rooms == null) return;
+
+
+        checkDistTimer = 0f;
+
+        Vector3 playerPos = transform.position;
+        float sqrMaxDistance = renderRoomIfDistIsLessThanThis * renderRoomIfDistIsLessThanThis;
+        
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            GameObject go = rooms[i].transform.gameObject;
+            
+
+
+            if (go == null) continue;
+
+            float sqrDistance = (go.transform.position - playerPos).sqrMagnitude;
+
+            bool shouldBeActive = sqrDistance <= sqrMaxDistance;
+
+            Transform hm = go.transform.GetChild(0); 
+            if (hm.gameObject.activeSelf != shouldBeActive)
+            {
+                hm.gameObject.SetActive(shouldBeActive);
+            }
+        }
+      
+    }
+
     private void Awake()
     {
         Instance = this;
-
-        teleportLocationObject = GameObject.Find("TeleportLocationPlayer");
 
     }
 
@@ -164,8 +206,12 @@ public class PlayerController : MonoBehaviour
 
         setSensi();
 
+
+        rooms = FindObjectsByType<RoomInstance>();
+
         isInitialized = true;
     }
+
 
 
     void setSensi()
@@ -261,6 +307,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
             TeleportToSafeRoom();
 
+
+        CheckDistances();
     }
 
 
