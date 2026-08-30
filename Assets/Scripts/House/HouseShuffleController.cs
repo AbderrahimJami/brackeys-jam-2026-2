@@ -35,6 +35,19 @@ namespace TrustNoOne.Shuffle
         [Tooltip("seconds before another shuffle can fire")]
         public float shuffleCooldown = 1.5f;
 
+        [Header("Culling")]
+        [Tooltip("stop rendering rooms the player can't see")]
+        public bool cullDistantRooms = true;
+
+        [Tooltip("how many doors away still gets drawn. 2 stops you seeing holes through doorways")]
+        public int visibleDepth = 2;
+
+        [Tooltip("how many doors away keeps its lights. lights are the expensive part")]
+        public int lightDepth = 1;
+
+        [Tooltip("how many doors away casts shadows. 0 means only your own room. this is the big one")]
+        public int shadowDepth = 0;
+
         readonly List<RoomInstance> rooms = new List<RoomInstance>();
         HouseLayout layout;
         RoomInstance playerRoom;
@@ -107,6 +120,7 @@ namespace TrustNoOne.Shuffle
             roomsOccupied++;
             if (playerRoom == room) return;
             playerRoom = room;
+            UpdateVisibility();
             GameEvents.Interact(InteractionKind.RoomEnter);
         }
 
@@ -277,7 +291,40 @@ namespace TrustNoOne.Shuffle
                 }
             }
 
+            UpdateVisibility();
             WarnIfPlayerSealed();
+        }
+
+        // only draw the player's room and what's within reach of it. locked doors block
+        // sight as well, so this reuses the same walk the validator does
+        public void UpdateVisibility()
+        {
+            if (layout == null) return;
+
+            if (!cullDistantRooms)
+            {
+                foreach (var r in rooms) r.SetVisible(true, true, true);
+                return;
+            }
+
+            PlacedRoom origin = playerRoom != null ? layout.ById(playerRoom.Id) : null;
+            if (origin == null)
+            {
+                // don't know where the player is yet, show everything rather than a void
+                foreach (var r in rooms) r.SetVisible(true, true, true);
+                return;
+            }
+
+            var dist = HouseGenerator.Distances(layout, Config(), origin);
+
+            foreach (var r in rooms)
+            {
+                int d;
+                bool reached = dist.TryGetValue(r.Id, out d);
+                r.SetVisible(reached && d <= visibleDepth,
+                             reached && d <= lightDepth,
+                             reached && d <= shadowDepth);
+            }
         }
 
         // the validator should make this impossible, so shout loudly if it happens

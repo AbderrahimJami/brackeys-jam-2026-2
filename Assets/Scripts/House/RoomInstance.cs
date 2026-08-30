@@ -11,9 +11,7 @@ namespace TrustNoOne.Shuffle
 
         [Header("Index 0-3 = N/E/S/W at rotation 0")]
         public GameObject[] doorways = new GameObject[4];
-        //[HideInInspector]
         public GameObject[] wallFillers = new GameObject[4];
-        //[HideInInspector]
         public GameObject[] lockedDoors = new GameObject[4];
 
         public int CurrentRotation { get; private set; }
@@ -21,42 +19,41 @@ namespace TrustNoOne.Shuffle
 
         public string Id { get { return gameObject.name; } }
 
+        Renderer[] renderers;
+        Light[] roomLights;
+        bool visible = true;
+
+        public bool IsVisible { get { return visible; } }
+
         private void Awake()
         {
+            renderers = GetComponentsInChildren<Renderer>(true);
+            roomLights = GetComponentsInChildren<Light>(true);
+        }
 
-            //wallFillers = new GameObject[doorways.Length];
-            //lockedDoors = new GameObject[lockedDoors.Length];
+        // geometry and lights are culled separately, lights are the expensive part
+        // geometry, lights and shadows are culled separately. shadows are the expensive part
+        public void SetVisible(bool on, bool lightsOn, bool shadowsOn)
+        {
+            visible = on;
 
-            //for (int i = 0; i < doorways.Length; i++)
-            //{
+            if (renderers != null)
+                foreach (var r in renderers)
+                {
+                    if (r == null) continue;
+                    r.enabled = on;
+                    r.shadowCastingMode = shadowsOn
+                        ? UnityEngine.Rendering.ShadowCastingMode.On
+                        : UnityEngine.Rendering.ShadowCastingMode.Off;
+                }
 
-
-            //    wallFillers[i] = null;
-            //    lockedDoors[i] = null;
-
-            //    if (doorways[i] == null) continue;
-
-            //    Transform parent = doorways[i].gameObject.transform.parent;
-
-            //    Transform wall = parent.Find("Wall");
-            //    Transform lockedDoor = parent.Find("LockedDoor");
-
-            //    if (wall == null)
-            //    {
-            //        Debug.LogError("Wall cannot be NULL when Doorway is present - GameObect = " + parent.parent.name);
-            //    }
-
-
-            //    if (lockedDoor == null)
-            //    {
-            //        Debug.LogError("lockedDoor cannot be NULL when Doorway is present - GameObect = " + parent.parent.name);
-            //    }
-
-
-            //    wallFillers[i] = wall.gameObject;
-            //    lockedDoors[i] = lockedDoor.gameObject;
-
-            //}    
+            if (roomLights != null)
+                foreach (var l in roomLights)
+                {
+                    if (l == null) continue;
+                    l.enabled = lightsOn;
+                    l.shadows = shadowsOn ? LightShadows.Soft : LightShadows.None;
+                }
         }
 
         public RoomTemplate ToTemplate()
