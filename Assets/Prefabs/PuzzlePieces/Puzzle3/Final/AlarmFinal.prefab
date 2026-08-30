@@ -257,7 +257,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1833810152192036645, guid: c8d7688ccc46ce542a72b61e0f4e490c, type: 3}
+  - {fileID: 1833810152192036645, guid: e1cbc8c089de54f41954814d3a241cc9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -388,7 +388,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1833810152192036645, guid: c8d7688ccc46ce542a72b61e0f4e490c, type: 3}
+  - {fileID: 1833810152192036645, guid: e1cbc8c089de54f41954814d3a241cc9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactables.Puzzles.Puzzle3.Puzzle3Alarm
   workingClock: {fileID: 0}
-  compartmentDoor: {fileID: 0}
+  key: {fileID: 0}
   hourText: {fileID: 5600514127599465323}
   minuteText: {fileID: 8271894864924851608}
   minuteStep: 5
@@ -656,7 +656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 1833810152192036645, guid: e1cbc8c089de54f41954814d3a241cc9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1571,7 +1571,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1833810152192036645, guid: c8d7688ccc46ce542a72b61e0f4e490c, type: 3}
+  - {fileID: 1833810152192036645, guid: e1cbc8c089de54f41954814d3a241cc9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
