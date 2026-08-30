@@ -13,7 +13,7 @@ namespace TrustNoOne.Shuffle
             if (EndgameController.Instance != null)
                 EndgameController.Instance.AddKey();
 
-            PlayTakeKeySound();
+            // PlayTakeKeySound();
 
             Debug.Log("Setting to FALSE on PICKUP");
             gameObject.SetActive(false);
