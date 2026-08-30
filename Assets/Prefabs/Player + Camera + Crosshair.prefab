@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2292
+  m_VersionIndex: 2298
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2593,7 +2593,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111244557938163272}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 87acca40915d2a14b853498a10bea54b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
