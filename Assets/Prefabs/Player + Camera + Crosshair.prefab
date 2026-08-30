@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2232
+  m_VersionIndex: 2238
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2881,6 +2881,13 @@ MonoBehaviour:
   altCloseKey: 27
   minOpenTime: 0.25
   readingLight: {fileID: 4799683944504858360}
+  readNoteEvent:
+    Guid:
+      Data1: -546813196
+      Data2: 1196018102
+      Data3: -411062353
+      Data4: -592806785
+    Path: event:/ReadNote
 --- !u!1 &4357324003055745388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,6 +3200,13 @@ MonoBehaviour:
   altCloseKey: 27
   minOpenTime: 0.25
   readingLight: {fileID: 0}
+  readNoteEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &8296606155606795974
 GameObject:
   m_ObjectHideFlags: 0
