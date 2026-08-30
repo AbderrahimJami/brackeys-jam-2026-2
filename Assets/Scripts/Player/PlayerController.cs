@@ -116,15 +116,33 @@ public class PlayerController : MonoBehaviour
         {
             if (rooms[i].definition.roomType == RoomType.SafeRoom)
             {
-                // 2. Calculate the destination world position
-                Vector3 targetWorldPos = rooms[i].gameObject.transform.position;
-                targetWorldPos.y += 2f;
+                // 2. CheckDistances() only re-evaluates every 2 seconds, so the room's
+                // floor/walls (RoomContentInsideThis) may currently be disabled if the player
+                // is far from it. The following code forces the gameobject to be active instead
+                Transform roomContent = rooms[i].transform.GetChild(0);
+                if (!roomContent.gameObject.activeSelf)
+                    roomContent.gameObject.SetActive(true);
 
-                // 3. Properly reset physics forces
+                // 3. Find the actual floor under the room instead of guessing a fixed
+                // vertical offset since rooms don't all sit the same distance from their
+                // pivot to the floor. Raycasting down
+                // places the player exactly on the surface, if that fails the "+2" code acts as fallback
+                if (collider == null) collider = GetComponent<CapsuleCollider>();
+
+                Vector3 roomPos = rooms[i].gameObject.transform.position;
+                Vector3 targetWorldPos = roomPos;
+                float halfHeight = collider != null ? collider.height * 0.5f : 0.8f;
+
+                if (Physics.Raycast(roomPos + Vector3.up * 5f, Vector3.down, out RaycastHit floorHit, 20f, ~0, QueryTriggerInteraction.Ignore))
+                    targetWorldPos.y = floorHit.point.y + halfHeight;
+                else
+                    targetWorldPos.y = roomPos.y + 2f; // fallback if no floor found under the room
+
+                // 4. Properly reset physics forces
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero; // Stops any spinning
 
-                // 4. Teleport the Rigidbody directly in world space
+                // 5. Teleport the Rigidbody directly in world space
                 rb.position = targetWorldPos;
                 transform.position = targetWorldPos; // Syncs transform immediately
 
