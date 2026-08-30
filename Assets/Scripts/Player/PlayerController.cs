@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Camera camera;
     [SerializeField]
-    public float cameraSensitivity = 100f;
+    public float cameraSensitivity = 1f;
 
     [System.Serializable]
     private struct HeadBobbingProfiles
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        setSensi();
+        //setSensi();
 
 
         rooms = FindObjectsByType<RoomInstance>();
@@ -251,8 +251,8 @@ public class PlayerController : MonoBehaviour
 
     void lookAround()
     {
-        float mouseX = Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxisRaw("Mouse X") * cameraSensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * cameraSensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 60f);
@@ -262,20 +262,17 @@ public class PlayerController : MonoBehaviour
         if (startHeadBobbing)
         {
             headBobbingTimer += Time.deltaTime;
-            
+
             float val = activeProfile.amplitude * Mathf.Sin(headBobbingTimer * activeProfile.frequency);
 
             Vector3 tempPosition = mainCamera.transform.localPosition;
-            tempPosition.y = mainCameraOriginalPosition.y + val; 
-
+            tempPosition.y = mainCameraOriginalPosition.y + val;
             mainCamera.transform.localPosition = tempPosition;
         }
 
-
         mainCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+
         oriantationTransform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-
-
     }
 
     void Update()
@@ -307,6 +304,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
             TeleportToSafeRoom();
 
+        if (transform.position.y <= -1000f)
+            TeleportToSafeRoom();
 
         CheckDistances();
     }

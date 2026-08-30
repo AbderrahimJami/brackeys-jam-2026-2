@@ -250,7 +250,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639237112129614931
+  lastModified: 639237248148904842
   FileSizes: []
   Exists: 1
 --- !u!114 &-6243290502375751337
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639237111811101843
+  lastModified: 639237174590050806
   FileSizes: []
   Exists: 1
 --- !u!114 &3195987701100432721
@@ -1875,7 +1875,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639237112130094298
+  lastModified: 639237248149102568
   FileSizes: []
   Exists: 1
 --- !u!114 &8829110797175327950

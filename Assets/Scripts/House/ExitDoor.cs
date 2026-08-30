@@ -12,10 +12,15 @@ namespace TrustNoOne.Shuffle
         [SerializeField] private EventReference doorFailEvent;
         [SerializeField] private EventReference doorOpenEvent;
 
+        Animator animator;
+
         [Tooltip("0, 1 or 2. must match its slot on EndgameController")]
         public int index;
 
-       
+        private void Start()
+        {
+            animator = GetComponent<Animator>();
+        }
 
         public void Interact(GameObject interactor)
         {
@@ -25,14 +30,23 @@ namespace TrustNoOne.Shuffle
 
             PlayDoorFailSound();
 
+
+
         }
 
+        public void setAnimatorDoorToFalse()
+        {
+            animator.SetBool("isOpen", false);
+        }
         void PlayDoorFailSound()
         {
+
+            animator.SetBool("isOpen", true);
             EventInstance instance = RuntimeManager.CreateInstance(doorFailEvent);
             instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
             instance.start();
             instance.release();
+
         }
 
         void PlayDoorOpenSound()

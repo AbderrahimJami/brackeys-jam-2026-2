@@ -35,7 +35,7 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     SampleRate:
-      Value: 48000
+      Value: 32000
       HasValue: 1
     BuildDirectory:
       Value: 
@@ -44,10 +44,10 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     VirtualChannelCount:
-      Value: 1024
+      Value: 64
       HasValue: 1
     RealChannelCount:
-      Value: 256
+      Value: 32
       HasValue: 1
     DSPBufferLength:
       Value: 0
@@ -385,8 +385,8 @@ MonoBehaviour:
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
-  AutomaticEventLoading: 1
-  BankLoadType: 0
+  AutomaticEventLoading: 0
+  BankLoadType: 2
   AutomaticSampleLoading: 0
   EncryptionKey: 
   ImportType: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   TargetBankFolder: 
   EventLinkage: 0
   SerializeGUIDsOnly: 0
-  LoggingLevel: 2
+  LoggingLevel: 4
   SpeakerModeSettings: []
   SampleRateSettings: []
   LiveUpdateSettings: []
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FMODUnity::FMODUnity.PlatformWebGL
   identifier: 46fbfdf3fc43db0458918377fd40293e
   parentIdentifier: default
-  active: 0
+  active: 1
   Properties:
     LiveUpdate:
       Value: 0
@@ -702,14 +702,14 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     RealChannelCount:
-      Value: 0
-      HasValue: 0
+      Value: 32
+      HasValue: 1
     DSPBufferLength:
-      Value: 0
-      HasValue: 0
+      Value: 2048
+      HasValue: 1
     DSPBufferCount:
-      Value: 0
-      HasValue: 0
+      Value: 4
+      HasValue: 1
     Plugins:
       Value: []
       HasValue: 0
@@ -719,7 +719,7 @@ MonoBehaviour:
     CallbackHandler:
       Value: {fileID: 0}
       HasValue: 0
-  OutputTypeName: 
+  OutputTypeName: AUTODETECT
   threadAffinities:
     Value: []
     HasValue: 0
@@ -836,7 +836,7 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     SampleRate:
-      Value: 22050
+      Value: 32000
       HasValue: 1
     BuildDirectory:
       Value: 
@@ -848,10 +848,10 @@ MonoBehaviour:
       Value: 64
       HasValue: 1
     RealChannelCount:
-      Value: 16
+      Value: 32
       HasValue: 1
     DSPBufferLength:
-      Value: 1024
+      Value: 2048
       HasValue: 1
     DSPBufferCount:
       Value: 4

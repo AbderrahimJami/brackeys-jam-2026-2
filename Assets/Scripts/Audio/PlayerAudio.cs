@@ -11,8 +11,6 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private EventReference footstepEvent;
     [SerializeField] private EventReference breatheEvent;
 
-
-
     [Header("Surface Detection")]
     [SerializeField] private float raycastDistance = 1.2f;
     [SerializeField] private LayerMask groundLayers;
@@ -22,32 +20,30 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private float minSpeedToStep = 0.1f;
     [SerializeField] private float distance = 0.1f;
     [SerializeField] private float breatheInterval = 1.5f;
+    [Range(0f, 1f)]
     [SerializeField] private float breatheVolume = 0.7f;
-
 
     private float stepTimer;
     private float breatheTimer;
 
-    void Update()
+    private void Update()
     {
-        StepHandler();
-        BreatheHandler();
-
+        HandleFootsteps();
+        HandleBreathing();
     }
 
-    void StepHandler()
+    private void HandleFootsteps()
     {
-        RuntimeManager.StudioSystem.setParameterByName("Distance", distance);
+        Vector3 velocity = player_rigidbody.linearVelocity;
 
-        Vector3 horizontalVelocity = new Vector3(
-            player_rigidbody.linearVelocity.x,
-            0f,
-            player_rigidbody.linearVelocity.z
-        );
+        // Avoid magnitude square root.
+        float horizontalSpeedSqr =
+            velocity.x * velocity.x +
+            velocity.z * velocity.z;
 
-        float speed = horizontalVelocity.magnitude;
+        float minSpeedSqr = minSpeedToStep * minSpeedToStep;
 
-        if (speed < minSpeedToStep)
+        if (horizontalSpeedSqr < minSpeedSqr)
         {
             stepTimer = 0f;
             return;
@@ -55,57 +51,88 @@ public class PlayerAudio : MonoBehaviour
 
         stepTimer -= Time.deltaTime;
 
-        if (stepTimer <= 0f)
-        {
-            PlayFootstep();
-            stepTimer = stepInterval;
-        }
+        if (stepTimer > 0f)
+            return;
+
+        PlayFootstep();
+
+        stepTimer = stepInterval;
     }
 
-    void BreatheHandler()
+    private void HandleBreathing()
     {
         breatheTimer -= Time.deltaTime;
-        RuntimeManager.StudioSystem.setParameterByName("BreatheVolume", breatheVolume);
 
-        if (breatheTimer <= 0f)
-        {
-            PlayBreathe();
-            breatheTimer = breatheInterval;
-        }
+        if (breatheTimer > 0f)
+            return;
+
+        PlayBreathe();
+
+        breatheTimer = breatheInterval;
     }
 
-    string DetectSurface()
+    private string DetectSurface()
     {
-        RaycastHit hit;
-        Vector3 origin = transform.position + Vector3.up * 0.1f;    
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
 
-        if (Physics.Raycast(origin, Vector3.down, out hit, raycastDistance, groundLayers))
+        if (Physics.Raycast(
+            origin,
+            Vector3.down,
+            out RaycastHit hit,
+            raycastDistance,
+            groundLayers))
         {
-            switch (hit.collider.tag)
-            {                
-                case "Wood": return "Wood";
-                case "Carpet": return "Carpet";
-                case "Stone": return "Stone";
-                default: return "Default";
-            }
-        }    
+            if (hit.collider.CompareTag("Wood"))
+                return "Wood";
+
+            if (hit.collider.CompareTag("Carpet"))
+                return "Carpet";
+
+            if (hit.collider.CompareTag("Stone"))
+                return "Stone";
+        }
+
         return "Default";
     }
 
-    void PlayFootstep()
+    private void PlayFootstep()
     {
-        EventInstance instance = RuntimeManager.CreateInstance(footstepEvent);
-        RuntimeManager.StudioSystem.setParameterByNameWithLabel("Surface", DetectSurface());
-        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        EventInstance instance =
+            RuntimeManager.CreateInstance(footstepEvent);
+
+        instance.set3DAttributes(
+            RuntimeUtils.To3DAttributes(transform)
+        );
+
+        instance.setParameterByName(
+            "Distance",
+            distance
+        );
+
+        instance.setParameterByNameWithLabel(
+            "Surface",
+            DetectSurface()
+        );
+
         instance.start();
         instance.release();
     }
 
-    void PlayBreathe()
+    private void PlayBreathe()
     {
-        EventInstance instance = RuntimeManager.CreateInstance(breatheEvent);      
-        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        EventInstance instance =
+            RuntimeManager.CreateInstance(breatheEvent);
+
+        instance.set3DAttributes(
+            RuntimeUtils.To3DAttributes(transform)
+        );
+
+        instance.setParameterByName(
+            "BreatheVolume",
+            breatheVolume
+        );
+
         instance.start();
-        instance.release();        
+        instance.release();
     }
 }
