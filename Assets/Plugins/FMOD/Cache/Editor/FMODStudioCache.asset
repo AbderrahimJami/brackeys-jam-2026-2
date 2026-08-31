@@ -250,7 +250,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Diegetic.bank
   Name: Diegetic
   StudioPath: bank:/Diegetic
-  lastModified: 639237248148904842
+  lastModified: 639237409367103367
   FileSizes: []
   Exists: 1
 --- !u!114 &-6243290502375751337
@@ -354,7 +354,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 2041017061435864058}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
@@ -427,7 +428,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639237111811115504
+  lastModified: 639236527999235723
   FileSizes:
   - Name: 
     Value: 2502
@@ -539,7 +540,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 4974625058627950288}
   MinDistance: 1
   MaxDistance: 20
   Length: 50
@@ -937,7 +939,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5163578226914044839}
   cacheVersion: 131860
-  cacheTime: 639237112130094298
+  cacheTime: 639237409367208651
   SerializableEventsDict:
   - key: event:/Candle
     index: 0
@@ -1197,6 +1199,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1999
+--- !u!114 &2041017061435864058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Button/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &2322685846953057448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,6 +1446,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &4109131795551967408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ItemRotate/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &4126571885091888837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,6 +1548,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &4974625058627950288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TakeKey/LightGain
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: LightGain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3731721828
+    data2: 1206291745
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &4990550665129195311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,7 +1904,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 4109131795551967408}
   MinDistance: 1
   MaxDistance: 20
   Length: 460
@@ -1875,7 +1950,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639237248149102568
+  lastModified: 639237409367208651
   FileSizes: []
   Exists: 1
 --- !u!114 &8829110797175327950
