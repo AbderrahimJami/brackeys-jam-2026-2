@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2298
+  m_VersionIndex: 2304
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   walkSpeed: 2
   acceleration: 8
-  deceleration: 0.5
+  deceleration: 5
   camera: {fileID: 8552921653515151851}
   cameraSensitivity: 1
   idle:
